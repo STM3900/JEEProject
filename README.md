@@ -42,9 +42,14 @@
     + [ ] price
 
 ## Global features
-+ [ ] tagdir
++ [x] tagdir : remove the jsp first line
 + [ ] listner servlet
-+ [ ] add relevant library or dependencies
++ [x] add relevant library or dependencies :
+  + **F4** on project 
+  + go to **dependencies** in **modules**
+  + **+** then choose **library** then **From Maven**
+  + Just search your dependency, download it, add it and **Apply**
+  
 
 
 ## Core
