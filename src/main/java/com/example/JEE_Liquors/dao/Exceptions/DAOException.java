@@ -1,4 +1,4 @@
-package com.example.JEE_Liquors.dao;
+package com.example.JEE_Liquors.dao.Exceptions;
 
 public class DAOException extends RuntimeException {
 

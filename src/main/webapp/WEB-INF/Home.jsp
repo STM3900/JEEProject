@@ -1,22 +1,23 @@
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Home</title>
 </head>
 <body>
 <h3>Hello Home</h3>
 <c:out value="test jsp tag" />
-<c:out value="${ user.lastName } ${ user.firstName }" />
+<c:out value="${ product.name } ${ product.image }" />
+<c:out value="${ error }" />
+<br>
 <form method="post" action="Home">
     <fieldset>
-        <label for="login">login</label>
-        <input type="text" id="login" name="login" placeholder="Entrez votre login" size="40" maxlength="60" required="required" value="${ login }"/>
-        <br/>
-        <label for="password">password</label>
-        <input type="password" id="password" name="password" placeholder="Entrez votre password" size="40" maxlength="60" required="required" value="${ password }"/>
+        <label for="idProduct">idProduct</label>
+        <input type="text" id="idProduct" name="idProduct" size="40" maxlength="60" required="required" value="${ idProduct }"/>
     </fieldset>
     <fieldset>
-        <input type="submit" name="validate"  value="Valider"  />
+        <input type="submit" name="validate"  value="Search"  />
     </fieldset>
 </form>
+
 </body>
 </html>

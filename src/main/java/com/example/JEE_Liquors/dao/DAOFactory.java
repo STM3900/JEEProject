@@ -1,5 +1,9 @@
 package com.example.JEE_Liquors.dao;
 
+import com.example.JEE_Liquors.dao.Exceptions.DAOConfigurationException;
+import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
+import com.example.JEE_Liquors.dao.Interfaces.IUserDao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -58,5 +62,13 @@ public class DAOFactory {
      */
     public IUserDao getUserDao() {
         return new UserDao( this );
+    }
+
+    /**
+     * Get DAO Product
+     * @return daoFactory
+     */
+    public IProductDao getProductDao() {
+        return new ProductDao( this );
     }
 }

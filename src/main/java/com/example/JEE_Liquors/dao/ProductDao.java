@@ -1,16 +1,15 @@
 package com.example.JEE_Liquors.dao;
 
-import com.example.JEE_Liquors.Models.Roles;
-import com.example.JEE_Liquors.Models.User;
+import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.dao.Exceptions.DAOException;
-import com.example.JEE_Liquors.dao.Interfaces.IUserDao;
+import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
 
-public class UserDao implements IUserDao {
+public class ProductDao implements IProductDao {
 
     //#region Private Properties
 
@@ -18,7 +17,7 @@ public class UserDao implements IUserDao {
 
     //#region Requests
 
-    private static final String SQL_SELECT_USER_BY_LOGIN_PWD = "SELECT * FROM user WHERE login = ? AND password = ?";
+    private static final String SQL_SELECT_PRODUCT_BY_ID = "SELECT * FROM product WHERE idProduct = ?";
 
     //#endregion
 
@@ -30,7 +29,7 @@ public class UserDao implements IUserDao {
      * Constructor
      * @param daoFactory daoFactory
      */
-    public UserDao( DAOFactory daoFactory ) {
+    public ProductDao( DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
     }
 
@@ -39,32 +38,33 @@ public class UserDao implements IUserDao {
     //#region Public Methods
 
     @Override
-    public User DataUser(HttpServletRequest request) {
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+    public Product DataProduct(HttpServletRequest request) {
+        String idProduct = request.getParameter("idProduct");
 
         //Initialize variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        User user = null;
+        Product product = null;
 
         try {
             //Get connection
             connection = daoFactory.getConnection();
-            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_USER_BY_LOGIN_PWD, false, login, password);
+            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_PRODUCT_BY_ID, false, idProduct);
             resultSet = preparedStatement.executeQuery();
 
             //Read result if exists
             if(resultSet.next()) {
-                user = map(resultSet);
+                product = map(resultSet);
+                System.out.println("===========> Product :");
+                System.out.println(product.getName());
             }
         } catch (SQLException e){
             throw new DAOException(e);
         } finally {
             SilentClosing(resultSet, preparedStatement, connection);
         }
-        return user;
+        return product;
     }
 
     public static PreparedStatement initialisationPreparedStatement( Connection connection, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
@@ -81,14 +81,13 @@ public class UserDao implements IUserDao {
      * @return User
      * @throws SQLException sqlException
      */
-    private static User map( ResultSet resultSet ) throws SQLException {
-        User user = new User(resultSet.getInt("idUser"),
-                                resultSet.getString("firstName"),
-                                resultSet.getString("lastName"),
-                                resultSet.getString("login"),
-                                resultSet.getString("password"),
-                                resultSet.getString("salt"),
-                                Roles.values()[resultSet.getInt("role")]);
-        return user;
+    private static Product map( ResultSet resultSet ) throws SQLException {
+        Product product = new Product(resultSet.getInt("idProduct"),
+                                        resultSet.getString("name"),
+                                        resultSet.getDouble("price"),
+                                        resultSet.getString("image"),
+                                        resultSet.getTimestamp("limitDate"),
+                                        resultSet.getDouble("quantity"));
+        return product;
     }
 }
