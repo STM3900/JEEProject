@@ -1,4 +1,4 @@
-package com.example.JEE_Liquors.beans;
+package com.example.JEE_Liquors.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

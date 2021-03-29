@@ -1,10 +1,5 @@
 package com.example.JEE_Liquors.dao;
 
-import com.example.JEE_Liquors.beans.DAOConfigurationException;
-import com.example.JEE_Liquors.beans.DAOProperties;
-import com.example.JEE_Liquors.beans.IUserDao;
-import com.example.JEE_Liquors.beans.UserDao;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

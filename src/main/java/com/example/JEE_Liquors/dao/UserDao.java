@@ -1,13 +1,12 @@
-package com.example.JEE_Liquors.beans;
+package com.example.JEE_Liquors.dao;
 
 import com.example.JEE_Liquors.Models.Roles;
 import com.example.JEE_Liquors.Models.User;
-import com.example.JEE_Liquors.dao.DAOFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 
-import static com.example.JEE_Liquors.beans.DAOUtils.SilentClosing;
+import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
 
 public class UserDao implements  IUserDao{
 
@@ -17,7 +16,7 @@ public class UserDao implements  IUserDao{
 
     //#region Requests
 
-    private static final String SQL_SELECT_PAR_LOGIN_PWD = "SELECT * FROM user WHERE login = ? AND pwd = ?";
+    private static final String SQL_SELECT_USER_BY_LOGIN_PWD = "SELECT * FROM user WHERE login = ? AND password = ?";
 
     //#endregion
 
@@ -40,7 +39,7 @@ public class UserDao implements  IUserDao{
     @Override
     public User DataUser(HttpServletRequest request) {
         String login = request.getParameter("login");
-        String pwd = request.getParameter("pwd");
+        String password = request.getParameter("password");
 
         //Initialize variables
         Connection connection = null;
@@ -51,7 +50,7 @@ public class UserDao implements  IUserDao{
         try {
             //Get connection
             connection = daoFactory.getConnection();
-            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_PAR_LOGIN_PWD, false, login, pwd);
+            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_USER_BY_LOGIN_PWD, false, login, password);
             resultSet = preparedStatement.executeQuery();
 
             //Read result if exists
@@ -81,7 +80,7 @@ public class UserDao implements  IUserDao{
      * @throws SQLException sqlException
      */
     private static User map( ResultSet resultSet ) throws SQLException {
-        User user = new User(resultSet.getInt("idUser"),resultSet.getString("firstName"),resultSet.getString("lastName"),resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("salt"), Roles.valueOf(resultSet.getString("role")));
+        User user = new User(resultSet.getInt("idUser"),resultSet.getString("firstName"),resultSet.getString("lastName"),resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("salt"), Roles.values()[resultSet.getInt("role")]);
         return user;
     }
 }

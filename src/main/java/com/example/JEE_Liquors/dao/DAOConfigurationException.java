@@ -1,4 +1,4 @@
-package com.example.JEE_Liquors.beans;
+package com.example.JEE_Liquors.dao;
 
 public class DAOConfigurationException extends RuntimeException {
 

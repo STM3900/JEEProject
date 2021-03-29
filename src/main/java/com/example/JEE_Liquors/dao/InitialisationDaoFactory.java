@@ -1,6 +1,4 @@
-package com.example.JEE_Liquors.beans;
-
-import com.example.JEE_Liquors.dao.DAOFactory;
+package com.example.JEE_Liquors.dao;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
