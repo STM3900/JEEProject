@@ -1,0 +1,33 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background: white;
+    padding: 10px;
+}
+
+nav article{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+nav article a{
+    text-decoration: none;
+}
+
+nav aside a{
+    margin-left: 5px;
+    margin-right: 5px;
+}
