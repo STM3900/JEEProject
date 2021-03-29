@@ -8,15 +8,18 @@ public class Product {
 
     private Integer idProduct;
     private String name;
-    private String price;
+    private double price;
     private String image;
     private Timestamp limitDate;
     private double quantity;
 
     //#endregion
 
-    //#region Constructor
+    //#region Constructors
 
+    /**
+     * Constructor (empty)
+     */
     public Product(){}
 
     /**
@@ -28,7 +31,7 @@ public class Product {
      * @param limitDate Date Limit
      * @param quantity Quantity
      */
-    public Product(Integer idProduct, String name, String price, String image, Timestamp limitDate, double quantity) {
+    public Product(Integer idProduct, String name, double price, String image, Timestamp limitDate, double quantity) {
         super();
         this.idProduct = idProduct;
         this.name = name;
@@ -59,14 +62,13 @@ public class Product {
     /**
      * @return the price
      */
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
     /**
      * @return the image
      */
-    // SI CA PLANTE C'EST LA
     public String getImage() {
         return image;
     }

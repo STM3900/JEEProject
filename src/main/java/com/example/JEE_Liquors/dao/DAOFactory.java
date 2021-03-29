@@ -1,9 +1,8 @@
 package com.example.JEE_Liquors.dao;
 
-import com.example.JEE_Liquors.beans.DAOConfigurationException;
-import com.example.JEE_Liquors.beans.DAOProperties;
-import com.example.JEE_Liquors.beans.IUserDao;
-import com.example.JEE_Liquors.beans.UserDao;
+import com.example.JEE_Liquors.dao.Exceptions.DAOConfigurationException;
+import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
+import com.example.JEE_Liquors.dao.Interfaces.IUserDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,9 +12,9 @@ public class DAOFactory {
 
     //#region Private Properties
 
-    private String url;
-    private String username;
-    private String password;
+    private final String url;
+    private final String username;
+    private final String password;
 
     //#endregion
 
@@ -63,5 +62,13 @@ public class DAOFactory {
      */
     public IUserDao getUserDao() {
         return new UserDao( this );
+    }
+
+    /**
+     * Get DAO Product
+     * @return daoFactory
+     */
+    public IProductDao getProductDao() {
+        return new ProductDao( this );
     }
 }

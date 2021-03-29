@@ -1,6 +1,7 @@
 package com.example.JEE_Liquors.Models;
 
 public class User {
+
     //#region Private Properties
 
     private Integer idUser;
@@ -13,8 +14,11 @@ public class User {
 
     //#endregion
 
-    //#region Constructor
+    //#region Constructors
 
+    /**
+     * Constructor (empty)
+     */
     public User(){}
 
     /**

@@ -1,4 +1,4 @@
-package com.example.JEE_Liquors.beans;
+package com.example.JEE_Liquors.dao.Interfaces;
 
 import com.example.JEE_Liquors.Models.User;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface IUserDao {
 
     /**
-     * Convert databse result in usable user
+     * Convert database result in usable user
      * @param request request
      * @return user
      */
