@@ -13,7 +13,7 @@ public class ProductDao implements IProductDao {
 
     //#region Private Properties
 
-    private DAOFactory daoFactory;
+    private final DAOFactory daoFactory;
 
     //#region Requests
 

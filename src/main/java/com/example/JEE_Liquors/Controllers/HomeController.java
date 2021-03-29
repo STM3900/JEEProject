@@ -1,9 +1,7 @@
 package com.example.JEE_Liquors.Controllers;
 
 import com.example.JEE_Liquors.Models.Product;
-import com.example.JEE_Liquors.Models.User;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
-import com.example.JEE_Liquors.dao.Interfaces.IUserDao;
 import com.example.JEE_Liquors.dao.DAOFactory;
 
 import javax.servlet.*;

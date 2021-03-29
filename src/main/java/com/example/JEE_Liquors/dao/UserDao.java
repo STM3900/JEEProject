@@ -14,7 +14,7 @@ public class UserDao implements IUserDao {
 
     //#region Private Properties
 
-    private DAOFactory daoFactory;
+    private final DAOFactory daoFactory;
 
     //#region Requests
 

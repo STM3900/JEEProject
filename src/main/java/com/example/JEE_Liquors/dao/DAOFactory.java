@@ -12,9 +12,9 @@ public class DAOFactory {
 
     //#region Private Properties
 
-    private String url;
-    private String username;
-    private String password;
+    private final String url;
+    private final String username;
+    private final String password;
 
     //#endregion
 
