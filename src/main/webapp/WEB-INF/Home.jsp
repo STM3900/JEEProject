@@ -6,7 +6,9 @@
 <body>
 <h3>Hello Home</h3>
 <c:out value="test jsp tag" />
-<c:out value="${ product.name } ${ product.image }" />
+<c:forEach var="product"  items="${ products }" >
+    ${product.name} ${product.price}
+</c:forEach>
 <c:out value="${ error }" />
 <br>
 <form method="post" action="Home">
