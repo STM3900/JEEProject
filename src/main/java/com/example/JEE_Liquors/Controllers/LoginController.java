@@ -1,6 +1,7 @@
 package com.example.JEE_Liquors.Controllers;
 
 import com.example.JEE_Liquors.Models.User;
+import com.example.JEE_Liquors.beans.SessionManager;
 import com.example.JEE_Liquors.dao.DAOFactory;
 import com.example.JEE_Liquors.dao.Interfaces.IUserDao;
 
@@ -16,7 +17,7 @@ public class LoginController extends HttpServlet {
 
     public static final String CONF_DAO_FACTORY = "daofactory";
     private IUserDao userDao;
-    HttpSession session;
+    private SessionManager sessionManager;
 
     //#endregion
 
@@ -41,9 +42,12 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
         User user = userDao.DataUser(request);
-        if(user != null)
-            request.setAttribute("user", user);
+        if(user != null){
+            sessionManager = new SessionManager(session);
+            sessionManager.CreateSessionUser(user);
+        }
         else{
             request.setAttribute("error", "Login error");
         }

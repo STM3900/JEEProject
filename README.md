@@ -21,7 +21,7 @@
   + [ ] Home
   + [ ] Login
   + [ ] Sign up
-  + [ ] Logout
+  + [x] Logout
 + [ ] Panier :
   + [ ] list of products small detail (name, quantity, price) and option delete ?
   + [ ] Price total
@@ -43,7 +43,7 @@
 
 ## Global features
 + [x] tagdir : remove the jsp first line
-+ [ ] listner servlet
++ [x] listner servlet
 + [x] add relevant library or dependencies :
   + **F4** on project 
   + go to **dependencies** in **modules**
@@ -53,7 +53,12 @@
 
 
 ## Core
-+ [ ] beans
-+ [ ] dao
-+ [ ] model
-+ [ ] controllers
++ [ ] beans : add cookies for cart
++ [x] dao
++ [ ] model : commands ?
++ [x] controllers
+
+# TODO
++ [ ] add model for commands and in database too
++ [ ] add SQL request : commands of user, add product
++ [ ] so much more

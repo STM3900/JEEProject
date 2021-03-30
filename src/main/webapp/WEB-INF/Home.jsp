@@ -13,6 +13,10 @@
 </c:forEach>
 <c:out value="${ error }" />
 <br>
+<p>Session params :</p>
+<c:out value="${sessionScope.idUserChartreuse}" />
+<c:out value="${sessionScope.roleUserChartreuse}" />
+<br>
 <form method="post" action="Home">
     <fieldset>
         <label for="idProduct">idProduct</label>

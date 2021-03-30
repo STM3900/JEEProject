@@ -36,7 +36,6 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.setAttribute("isConnected", false);
         getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
     }
 
