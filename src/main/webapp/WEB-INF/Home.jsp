@@ -6,8 +6,13 @@
 <body>
 <h3>Hello Home</h3>
 <c:out value="test jsp tag" />
+<p>attributes requests :</p>
 <c:out value="${ product.name } ${ product.image }" />
 <c:out value="${ error }" />
+<br>
+<p>Session params :</p>
+<c:out value="${sessionScope.idUserChartreuse}" />
+<c:out value="${sessionScope.roleUserChartreuse}" />
 <br>
 <form method="post" action="Home">
     <fieldset>

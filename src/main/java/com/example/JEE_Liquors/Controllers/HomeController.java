@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "HomeController", value = {"/Home", "/"})
+@WebServlet(name = "HomeController", value = "/Home")
 public class HomeController extends HttpServlet {
 
     //#region Private Properties
