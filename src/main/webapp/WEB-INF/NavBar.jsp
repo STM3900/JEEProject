@@ -7,7 +7,9 @@
         <aside>
             <a href="">Connexion</a>
             <a href="">Inscription</a>
-            <a href="">Déconnexion</a>
+            <c:if test="${ isConnected == true }">
+                <a href="">Déconnexion</a>
+            </c:if>
         </aside>
     </article>
 </nav>

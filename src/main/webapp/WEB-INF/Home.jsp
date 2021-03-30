@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
-<%@ include file="Navbar.jsp" %>
+<%@ include file="NavBar.jsp" %>
 <h3>Hello Home</h3>
 <c:out value="test jsp tag" />
 <c:out value="${ product.name } ${ product.image }" />
