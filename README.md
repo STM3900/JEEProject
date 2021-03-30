@@ -21,7 +21,7 @@
   + [ ] Home
   + [ ] Login
   + [ ] Sign up
-  + [ ] Logout
+  + [x] Logout
 + [ ] Panier :
   + [ ] list of products small detail (name, quantity, price) and option delete ?
   + [ ] Price total
