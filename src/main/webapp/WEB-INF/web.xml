@@ -15,4 +15,8 @@
             <include-prelude>/WEB-INF/tagdirs.jsp</include-prelude>
         </jsp-property-group>
     </jsp-config>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
 </web-app>
