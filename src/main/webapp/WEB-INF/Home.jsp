@@ -2,12 +2,15 @@
 <head>
     <meta charset="utf-8">
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
+<%@ include file="NavBar.jsp" %>
 <h3>Hello Home</h3>
 <c:out value="test jsp tag" />
-<p>attributes requests :</p>
-<c:out value="${ product.name } ${ product.image }" />
+<c:forEach var="product"  items="${ products }" >
+    ${product.name} ${product.price}
+</c:forEach>
 <c:out value="${ error }" />
 <br>
 <p>Session params :</p>

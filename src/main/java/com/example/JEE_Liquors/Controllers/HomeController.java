@@ -3,13 +3,15 @@ package com.example.JEE_Liquors.Controllers;
 import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import com.example.JEE_Liquors.dao.DAOFactory;
+import com.example.JEE_Liquors.dao.ProductDao;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
-@WebServlet(name = "HomeController", value = "/Home")
+@WebServlet(name = "HomeController", value = {"/Home", "/", ""})
 public class HomeController extends HttpServlet {
 
     //#region Private Properties
@@ -40,10 +42,11 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Product product = productDao.DataProduct(request);
-        if(product != null)
+        productDao.InsertProduct(request);
+        ArrayList<Product> products = productDao.AllProducts(request);
+        if(products != null)
         {
-            request.setAttribute("product", product);
+            request.setAttribute("products", products);
         }
         else{
             request.setAttribute("error", "error get product");
