@@ -1,6 +1,6 @@
 body{
-    margin: 0;
     padding: 0;
+    margin: 0 5%;
 }
 
 nav{
@@ -14,7 +14,7 @@ nav{
 }
 
 nav article{
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,6 +24,10 @@ nav article{
 
 nav article a{
     text-decoration: none;
+}
+
+nav div a{
+    margin: 0;
 }
 
 nav aside a{
