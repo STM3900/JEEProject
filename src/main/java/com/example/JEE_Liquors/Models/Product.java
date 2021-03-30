@@ -41,6 +41,24 @@ public class Product {
         this.quantity = quantity;
     }
 
+    /**
+     * Constructor
+     * @param idProduct ID Product
+     * @param name Name Product
+     * @param price Price
+     * @param image Image
+     * @param limitDate Date Limit
+     * @param quantity Quantity
+     */
+    public Product(String name, double price, String image, Timestamp limitDate, double quantity) {
+        super();
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.limitDate = limitDate;
+        this.quantity = quantity;
+    }
+
     //#endregion
 
     //#region Getter & Setter

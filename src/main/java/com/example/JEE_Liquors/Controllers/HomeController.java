@@ -3,6 +3,7 @@ package com.example.JEE_Liquors.Controllers;
 import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import com.example.JEE_Liquors.dao.DAOFactory;
+import com.example.JEE_Liquors.dao.ProductDao;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -41,6 +42,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        productDao.InsertProduct(request);
         ArrayList<Product> products = productDao.AllProducts(request);
         if(products != null)
         {

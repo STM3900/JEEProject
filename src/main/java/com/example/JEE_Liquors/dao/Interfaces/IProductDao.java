@@ -17,7 +17,14 @@ public interface IProductDao {
     /**
      * Convert database result in usable product
      * @param request request
-     * @return product
+     * @return products
      */
     ArrayList<Product> AllProducts(HttpServletRequest request);
+
+    /**
+     * Insert object in database
+     * @param request request
+     * @return void
+     */
+    void InsertProduct(HttpServletRequest request);
 }
