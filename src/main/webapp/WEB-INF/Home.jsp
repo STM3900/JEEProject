@@ -3,6 +3,8 @@
     <meta charset="utf-8">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <%@ include file="NavBar.jsp" %>
@@ -17,7 +19,10 @@
 <c:out value="${sessionScope.idUserChartreuse}" />
 <c:out value="${sessionScope.roleUserChartreuse}" />
 <br>
-<form method="post" action="Home">
+
+
+
+<form method="post" action="Home" style="display: none">
     <fieldset>
         <label for="idProduct">idProduct</label>
         <input type="text" id="idProduct" name="idProduct" size="40" maxlength="60" required="required" value="${ idProduct }"/>

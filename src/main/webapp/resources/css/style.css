@@ -1,6 +1,7 @@
 body{
     padding: 0;
     margin: 0 5%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 nav{
@@ -11,6 +12,7 @@ nav{
     align-items: center;
     align-content: center;
     padding: 10px;
+    background: white;
 }
 
 nav article{
@@ -24,6 +26,12 @@ nav article{
 
 nav article a{
     text-decoration: none;
+    color: rgb(50, 50, 50);
+    transition: 0.3s;
+}
+
+nav article a:hover{
+    color: rgb(120, 120, 120);
 }
 
 nav div a{
