@@ -1,22 +1,26 @@
-body{
+body {
     padding: 0;
-    margin: 0 5%;
-    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    color: rgb(50, 50, 50);
 }
 
-nav{
+nav {
     width: 100%;
+    position: fixed;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     align-content: center;
-    padding: 10px;
     background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-nav article{
+nav article {
+    margin: 0 10%;
     width: 100%;
+    padding: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,21 +28,169 @@ nav article{
     align-content: center;
 }
 
-nav article a{
+nav article a {
     text-decoration: none;
     color: rgb(50, 50, 50);
     transition: 0.3s;
 }
 
-nav article a:hover{
+nav article a:hover {
     color: rgb(120, 120, 120);
 }
 
-nav div a{
+nav div a {
     margin: 0;
 }
 
-nav aside a{
+nav aside a {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.navbar-margin {
+    padding-bottom: 75px;
+}
+
+.content {
+    margin: 0 10%;
+}
+
+header {
+    height: 45vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+header aside {
+    position: absolute;
+    height: 45vh;
+    width: 80%;
+
+    /* The image used */
+    background-image: url("../images/fond.jpg");
+
+    /* Create the parallax scrolling effect */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+header h1 {
+    margin-left: 40px;
+    font-size: 50px;
+    color: white;
+    font-weight: normal;
+}
+
+button {
+    padding: 10px 20px;
+    transition: 0.3s;
+    background: none;
+    font-family: "Open Sans", sans-serif;
+    border: solid black 2px;
+    font-size: 14px;
+}
+
+button:hover {
+    background: rgb(245, 245, 245);
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.product-list {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.product-list section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: center;
+
+    height: 200px;
+    width: 30%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.article-info {
+    width: 80%;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-content: center;
+}
+
+.article-info-title {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
+}
+
+.article-info-title div h3 {
+    font-size: 25px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.article-info-title div p {
+    margin: 0 0 0 10px;
+    font-size: 20px;
+}
+
+.article-info-title p {
+    font-size: 25px;
+}
+
+.article-info button {
+    margin-bottom: 25px;
+}
+
+.article-image {
+    width: 20%;
+}
+
+.article-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 1100px) {
+    .product-list section {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .product-list section {
+        width: 100%;
+    }
 }
