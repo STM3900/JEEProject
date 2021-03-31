@@ -7,4 +7,7 @@ public class DAOProperties {
     public final static String user = "root";
     public final static String password = "";
     public final static String name = "com.mysql.cj.jdbc.Driver";
+
+    public static final String CONF_DAO_FACTORY = "daofactory";
+
 }

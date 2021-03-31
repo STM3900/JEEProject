@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
+import static com.example.JEE_Liquors.dao.DAOUtils.initialisationPreparedStatement;
 
 public class UserDao implements IUserDao {
 
@@ -19,6 +20,8 @@ public class UserDao implements IUserDao {
     //#region Requests
 
     private static final String SQL_SELECT_USER_BY_LOGIN_PWD = "SELECT * FROM user WHERE login = ? AND password = ?";
+
+    private static final String SQL_INSERT_USER = "INSERT INTO `user` (`firstName`, `lastName`, `login`, `password`, `role`, `salt`) VALUES (?, ?, ?, ?, '0', 'salt')";
 
     //#endregion
 
@@ -67,13 +70,34 @@ public class UserDao implements IUserDao {
         return user;
     }
 
-    public static PreparedStatement initialisationPreparedStatement( Connection connection, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
-        for ( int i = 0; i < objets.length; i++ ) {
-            preparedStatement.setObject( i + 1, objets[i] );
+    @Override
+    public User AddUser(HttpServletRequest request) {
+
+        //Get parameters
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+
+        //Initialize variables
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            //Get connection
+            connection = daoFactory.getConnection();
+            preparedStatement = initialisationPreparedStatement(connection, SQL_INSERT_USER, false,firstName, lastName, login, password);
+            int t = preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            throw new DAOException(e);
+        } finally {
+            SilentClosing(preparedStatement, connection);
         }
-        return preparedStatement;
+        return DataUser(request);
     }
+
+    //#endregion
 
     /**
      * Convert resultSet into user
@@ -82,13 +106,12 @@ public class UserDao implements IUserDao {
      * @throws SQLException sqlException
      */
     private static User map( ResultSet resultSet ) throws SQLException {
-        User user = new User(resultSet.getInt("idUser"),
+        return new User(resultSet.getInt("idUser"),
                                 resultSet.getString("firstName"),
                                 resultSet.getString("lastName"),
                                 resultSet.getString("login"),
                                 resultSet.getString("password"),
                                 resultSet.getString("salt"),
                                 Roles.values()[resultSet.getInt("role")]);
-        return user;
     }
 }
