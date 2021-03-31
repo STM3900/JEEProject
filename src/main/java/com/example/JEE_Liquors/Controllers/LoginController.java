@@ -1,5 +1,6 @@
 package com.example.JEE_Liquors.Controllers;
 
+import com.example.JEE_Liquors.Models.Roles;
 import com.example.JEE_Liquors.Models.User;
 import com.example.JEE_Liquors.beans.SessionManager;
 import com.example.JEE_Liquors.dao.DAOFactory;
@@ -10,7 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "LoginController", value = {"/Login", "/SignIn", "/LogOut"})
+@WebServlet(name = "LoginController", value = {"/Login", "/SignIn"})
 public class LoginController extends HttpServlet {
 
     //#region Private Properties
@@ -43,13 +44,31 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        User user = userDao.DataUser(request);
-        if(user != null){
-            sessionManager = new SessionManager(session);
-            sessionManager.CreateSessionUser(user);
+
+        //Login
+        if(request.getParameter("loginButton") != null)
+        {
+            User user = userDao.DataUser(request);
+            if(user != null){
+                sessionManager = new SessionManager(session);
+                sessionManager.CreateSessionUser(user);
+                getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
+            }
+            else{
+                request.setAttribute("error", "Login error");
+            }
         }
+        //Sign In
         else{
-            request.setAttribute("error", "Login error");
+            User user = userDao.AddUser(request);
+            if(user != null){
+                sessionManager = new SessionManager(session);
+                sessionManager.CreateSessionUser(user);
+                getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
+            }
+            else{
+                request.setAttribute("error", "Sign in error");
+            }
         }
 
         doGet(request,response);

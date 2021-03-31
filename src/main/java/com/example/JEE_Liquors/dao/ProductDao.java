@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
+import static com.example.JEE_Liquors.dao.DAOUtils.initialisationPreparedStatement;
 
 public class ProductDao implements IProductDao {
 
@@ -73,14 +74,6 @@ public class ProductDao implements IProductDao {
         return product;
     }
 
-    public static PreparedStatement initialisationPreparedStatement( Connection connection, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
-        for ( int i = 0; i < objets.length; i++ ) {
-            preparedStatement.setObject( i + 1, objets[i] );
-        }
-        return preparedStatement;
-    }
-
     @Override
     public ArrayList<Product> AllProducts(HttpServletRequest request) {
 
@@ -142,8 +135,6 @@ public class ProductDao implements IProductDao {
         //Initialize variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        ArrayList<Product> products = new ArrayList<Product>();
 
         try {
             //Get connection
@@ -154,25 +145,26 @@ public class ProductDao implements IProductDao {
         } catch (SQLException e){
             throw new DAOException(e);
         } finally {
-            SilentClosing(resultSet, preparedStatement, connection);
+            SilentClosing(preparedStatement, connection);
         }
     }
 
+    //#endregion
+
 
     /**
-     * Convert resultSet into user
+     * Convert resultSet into product
      * @param resultSet resultSet
-     * @return User
+     * @return Product
      * @throws SQLException sqlException
      */
     private static Product map( ResultSet resultSet ) throws SQLException {
-        Product product = new Product(resultSet.getInt("idProduct"),
+        return new Product(resultSet.getInt("idProduct"),
                 resultSet.getString("name"),
                 resultSet.getDouble("price"),
                 resultSet.getString("image"),
                 resultSet.getTimestamp("limitDate"),
                 resultSet.getDouble("quantity"));
-        return product;
     }
 
 

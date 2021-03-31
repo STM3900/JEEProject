@@ -1,11 +1,10 @@
 package com.example.JEE_Liquors.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DAOUtils {
+
+    //#region Close Connection
 
     /**
      * Silent closing ResultSet
@@ -68,5 +67,24 @@ public class DAOUtils {
     public static void SilentClosing( ResultSet resultSet, Statement statement, Connection connection ) {
         SilentClosing( resultSet );
         SilentClosing(statement, connection);
+    }
+
+    //#endregion
+
+    /**
+     * Prepare statement
+     * @param connection connection
+     * @param sql sql request
+     * @param returnGeneratedKeys generate key
+     * @param objets parameters
+     * @return Prepare statement
+     * @throws SQLException sql exception
+     */
+    public static PreparedStatement initialisationPreparedStatement(Connection connection, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
+        for ( int i = 0; i < objets.length; i++ ) {
+            preparedStatement.setObject( i + 1, objets[i] );
+        }
+        return preparedStatement;
     }
 }

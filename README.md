@@ -53,12 +53,11 @@
 
 
 ## Core
-+ [ ] beans : add cookies for cart
++ [x] beans 
 + [x] dao
 + [ ] model : commands ?
 + [x] controllers
 
 # TODO
 + [ ] add model for commands and in database too
-+ [ ] add SQL request : commands of user, add product
-+ [ ] so much more
++ [ ] add SQL request : commands of user
