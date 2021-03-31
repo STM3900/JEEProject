@@ -20,7 +20,53 @@
 <c:out value="${sessionScope.roleUserChartreuse}" />
 <br>
 
-
+<div class="content">
+    <header>
+        <aside></aside>
+        <h1>La grandeur est la gloire en bouteille.</h1>
+    </header>
+    <article class="product-list">
+        <section>
+            <div class="article-image"><img src="chartreuse.png" alt="" /></div>
+            <div class="article-info">
+                <div class="article-info-title">
+                    <div>
+                        <h3>Chartreuse</h3>
+                        <p>1.5L</p>
+                    </div>
+                    <p>34,50€</p>
+                </div>
+                <button>Ajouter au panier</button>
+            </div>
+        </section>
+        <section>
+            <div class="article-image"><img src="genepi.png" alt="" /></div>
+            <div class="article-info">
+                <div class="article-info-title">
+                    <div>
+                        <h3>Genepi</h3>
+                        <p>2L</p>
+                    </div>
+                    <p>15.50€</p>
+                </div>
+                <button>Ajouter au panier</button>
+            </div>
+        </section>
+        <section>
+            <div class="article-image"><img src="vodka.jpg" alt="" /></div>
+            <div class="article-info">
+                <div class="article-info-title">
+                    <div>
+                        <h3>Vodka</h3>
+                        <p>1.5L</p>
+                    </div>
+                    <p>10€</p>
+                </div>
+                <button>Ajouter au panier</button>
+            </div>
+        </section>
+    </article>
+</div>
 
 <form method="post" action="Home" style="display: none">
     <fieldset>
