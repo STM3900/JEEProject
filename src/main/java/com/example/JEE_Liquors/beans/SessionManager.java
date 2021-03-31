@@ -34,6 +34,8 @@ public class SessionManager {
 
     //#region Public Methods
 
+    //#region User
+
     /**
      * Create Session data for user
      * @param user user
@@ -43,6 +45,10 @@ public class SessionManager {
         session.setAttribute(roleUserLabel, user.getRole());
         System.out.println("id user : " + session.getAttribute(idUserLabel) + " role : " + session.getAttribute(roleUserLabel));
     }
+
+    //#endregion
+
+    //#region Cart
 
     /**
      * Create Session data for cart
@@ -66,10 +72,22 @@ public class SessionManager {
      */
     public void AddProductSessionCart(List<Product> products) {
         List<Product> allproducts = (List<Product>) session.getAttribute(cartLabel);
-        for (Product product : products) {
-            allproducts.add(product);
-        }
+        allproducts.addAll(products);
         session.setAttribute(cartLabel, products);
+    }
+
+    /**
+     * Remove product from Session data for cart
+     * @param id id of product
+     */
+    public void RemoveProductSessionCart(Integer id){
+        List<Product> allproducts = (List<Product>) session.getAttribute(cartLabel);
+        for (int i = 0; i < allproducts.size()-1; i++) {
+            if(allproducts.get(i).getIdProduct() == id) {
+                allproducts.remove(i);
+                break;
+            }
+        }
     }
 
     /**
@@ -78,6 +96,8 @@ public class SessionManager {
     public void DeleteSessionCart() {
         session.removeAttribute(cartLabel);
     }
+
+    //#endregion
 
     /**
      * Destroy Session data

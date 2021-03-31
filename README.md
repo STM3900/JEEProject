@@ -18,16 +18,17 @@
 
 ## Views
 + [ ] Menu : links
-  + [ ] Home
+  + [x] Home
   + [x] Login
   + [x] Sign up
   + [x] Logout
 + [ ] Panier :
-  + [ ] list of products small detail (name, quantity, price) and option delete ?
-  + [ ] Price total
-  + [ ] button validate panier
-+ [ ] Add Product :
-  + [ ] Form new product
+  + [x] list of products small detail (name, quantity, price)
+  + [x] delete product button
+  + [x] Price total
+  + [x] button validate panier
++ [x] Add Product :
+  + [x] Form new product
 + [ ] Validate panier :
   + [ ] recap
   + [ ] options (livraison, facture?)
