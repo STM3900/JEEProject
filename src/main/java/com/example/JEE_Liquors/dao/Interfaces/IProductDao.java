@@ -26,5 +26,5 @@ public interface IProductDao {
      * @param request request
      * @return void
      */
-    void InsertProduct(HttpServletRequest request);
+    Product InsertProduct(HttpServletRequest request);
 }
