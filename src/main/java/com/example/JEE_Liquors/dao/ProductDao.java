@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
+import static com.example.JEE_Liquors.dao.DAOUtils.initialisationPreparedStatement;
 
 public class ProductDao implements IProductDao {
 
@@ -22,6 +23,8 @@ public class ProductDao implements IProductDao {
     private static final String SQL_SELECT_PRODUCT_BY_ID = "SELECT * FROM product WHERE idProduct = ?";
 
     private static final String SQL_SELECT_PRODUCTS = "SELECT * FROM product";
+
+    private static final String SQL_SELECT_LAST_PRODUCT_ADDED = "select * from product ORDER BY idProduct DESC LIMIT 1";
 
     private static final String SQL_ADD_PRODUCT ="INSERT INTO `product` (`image`, `limitDate`, `name`, `quantity`, `price`) VALUES (?, ?, ?, ?, ?);";
 
@@ -73,14 +76,6 @@ public class ProductDao implements IProductDao {
         return product;
     }
 
-    public static PreparedStatement initialisationPreparedStatement( Connection connection, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
-        for ( int i = 0; i < objets.length; i++ ) {
-            preparedStatement.setObject( i + 1, objets[i] );
-        }
-        return preparedStatement;
-    }
-
     @Override
     public ArrayList<Product> AllProducts(HttpServletRequest request) {
 
@@ -108,7 +103,6 @@ public class ProductDao implements IProductDao {
                 products.add(pr);
                 System.out.println("===========> Product :");
                 System.out.println(products.get(products.size()-1).getName());
-
             }
         } catch (SQLException e){
             throw new DAOException(e);
@@ -119,31 +113,20 @@ public class ProductDao implements IProductDao {
     }
 
     @Override
-    public void InsertProduct(HttpServletRequest request) {
+    public Product InsertProduct(HttpServletRequest request) {
 
-        //TODO UNCOMMENT AND SET THE PARAMETERS NAME AS THE SAME THAN THE FORM
-        /*String img = request.getParameter("productImg");
-        Date date = Date.valueOf(request.getParameter("productDate"));
+        String img = request.getParameter("image");
+        Date date = Date.valueOf(request.getParameter("limitDate"));
         Timestamp limitDate = new Timestamp(date.getTime());
-        String name = request.getParameter("productName");
-        Double quantity = Double.parseDouble(request.getParameter("productQuantity"));
-        Double price = Double.parseDouble(request.getParameter("productPrice"));*/
-
-        //(`idProduct`, `image`, `limitDate`, `name`, `quantity`, `price`) VALUES (NULL, '', '2021-03-30 22:13:59', 'vodka', '1', '5.20')
-
-        //TEST PURPOSE
-        //TODO REMOVE
-        String img = "";
-        Timestamp limitDate = new Timestamp(Date.valueOf("2021-03-30").getTime());
-        String name = "vodka";
-        Double quantity = 1.0;
-        Double price = 5.20;
+        String name = request.getParameter("name");
+        Double quantity = Double.parseDouble(request.getParameter("quantity"));
+        Double price = Double.parseDouble(request.getParameter("price"));
 
         //Initialize variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        ArrayList<Product> products = new ArrayList<Product>();
+        Product product = null;
 
         try {
             //Get connection
@@ -151,29 +134,38 @@ public class ProductDao implements IProductDao {
             preparedStatement = initialisationPreparedStatement(connection, SQL_ADD_PRODUCT, false,img,limitDate,name,quantity,price);
             int t = preparedStatement.executeUpdate();
 
+            //Get Product created
+            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_LAST_PRODUCT_ADDED, false);
+            resultSet = preparedStatement.executeQuery();
+
+            //Read result if exists
+            if(resultSet.next()) {
+                product = map(resultSet);
+            }
+
         } catch (SQLException e){
             throw new DAOException(e);
         } finally {
-            SilentClosing(resultSet, preparedStatement, connection);
+            SilentClosing(resultSet,preparedStatement, connection);
         }
+        return product;
     }
 
+    //#endregion
 
     /**
-     * Convert resultSet into user
+     * Convert resultSet into product
      * @param resultSet resultSet
-     * @return User
+     * @return Product
      * @throws SQLException sqlException
      */
     private static Product map( ResultSet resultSet ) throws SQLException {
-        Product product = new Product(resultSet.getInt("idProduct"),
+        return new Product(resultSet.getInt("idProduct"),
                 resultSet.getString("name"),
                 resultSet.getDouble("price"),
                 resultSet.getString("image"),
                 resultSet.getTimestamp("limitDate"),
                 resultSet.getDouble("quantity"));
-        return product;
     }
-
 
 }

@@ -12,4 +12,11 @@ public interface IUserDao {
      * @return user
      */
     User DataUser(HttpServletRequest request);
+
+    /**
+     * Insert new user in database
+     * @param request request
+     * @return user created
+     */
+    User AddUser(HttpServletRequest request);
 }
