@@ -1,6 +1,5 @@
 package com.example.JEE_Liquors.Controllers;
 
-import com.example.JEE_Liquors.Models.Roles;
 import com.example.JEE_Liquors.Models.User;
 import com.example.JEE_Liquors.beans.SessionManager;
 import com.example.JEE_Liquors.dao.DAOFactory;
@@ -11,12 +10,13 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
+import static com.example.JEE_Liquors.dao.DAOProperties.CONF_DAO_FACTORY;
+
 @WebServlet(name = "LoginController", value = {"/Login", "/SignIn"})
 public class LoginController extends HttpServlet {
 
     //#region Private Properties
 
-    public static final String CONF_DAO_FACTORY = "daofactory";
     private IUserDao userDao;
     private SessionManager sessionManager;
 

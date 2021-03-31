@@ -3,7 +3,6 @@ package com.example.JEE_Liquors.Controllers;
 import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import com.example.JEE_Liquors.dao.DAOFactory;
-import com.example.JEE_Liquors.dao.ProductDao;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,12 +10,13 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.example.JEE_Liquors.dao.DAOProperties.CONF_DAO_FACTORY;
+
 @WebServlet(name = "HomeController", value = {"/Home", "/", ""})
 public class HomeController extends HttpServlet {
 
     //#region Private Properties
 
-    public static final String CONF_DAO_FACTORY = "daofactory";
     private IProductDao productDao;
 
     //#endregion

@@ -19,8 +19,8 @@
 ## Views
 + [ ] Menu : links
   + [ ] Home
-  + [ ] Login
-  + [ ] Sign up
+  + [x] Login
+  + [x] Sign up
   + [x] Logout
 + [ ] Panier :
   + [ ] list of products small detail (name, quantity, price) and option delete ?
