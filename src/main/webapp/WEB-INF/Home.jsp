@@ -8,75 +8,35 @@
 </head>
 <body>
 <%@ include file="NavBar.jsp" %>
-<h3>Hello Home</h3>
-<c:out value="test jsp tag" />
-<c:forEach var="product"  items="${ products }" >
-    ${product.name} ${product.price}
-</c:forEach>
-<c:out value="${ error }" />
-<br>
-<p>Session params :</p>
+<!--
 <c:out value="${sessionScope.idUserChartreuse}" />
 <c:out value="${sessionScope.roleUserChartreuse}" />
-<br>
 
+TODO Utiliser la variable de session pour afficher le bouton acheter ou non
+-->
 <div class="content">
     <header>
         <aside></aside>
         <h1>La grandeur est la gloire en bouteille.</h1>
     </header>
     <article class="product-list">
-        <section>
-            <div class="article-image"><img src="chartreuse.png" alt="" /></div>
-            <div class="article-info">
-                <div class="article-info-title">
-                    <div>
-                        <h3>Chartreuse</h3>
-                        <p>1.5L</p>
+        <c:forEach var="product"  items="${ products }" >
+            <section>
+                <div class="article-image"><img src="${product.image}" alt="" /></div>
+                <div class="article-info">
+                    <div class="article-info-title">
+                        <div>
+                            <h3>${product.name}</h3>
+                            <p>${product.quantity}</p>
+                        </div>
+                        <p>${product.price}e</p>
                     </div>
-                    <p>34,50€</p>
+                    <button>Ajouter au panier</button>
                 </div>
-                <button>Ajouter au panier</button>
-            </div>
-        </section>
-        <section>
-            <div class="article-image"><img src="genepi.png" alt="" /></div>
-            <div class="article-info">
-                <div class="article-info-title">
-                    <div>
-                        <h3>Genepi</h3>
-                        <p>2L</p>
-                    </div>
-                    <p>15.50€</p>
-                </div>
-                <button>Ajouter au panier</button>
-            </div>
-        </section>
-        <section>
-            <div class="article-image"><img src="vodka.jpg" alt="" /></div>
-            <div class="article-info">
-                <div class="article-info-title">
-                    <div>
-                        <h3>Vodka</h3>
-                        <p>1.5L</p>
-                    </div>
-                    <p>10€</p>
-                </div>
-                <button>Ajouter au panier</button>
-            </div>
-        </section>
+            </section>
+        </c:forEach>
     </article>
 </div>
-
-<form method="post" action="Home" style="display: none">
-    <fieldset>
-        <label for="idProduct">idProduct</label>
-        <input type="text" id="idProduct" name="idProduct" size="40" maxlength="60" required="required" value="${ idProduct }"/>
-    </fieldset>
-    <fieldset>
-        <input type="submit" name="validate"  value="Search"  />
-    </fieldset>
-</form>
 
 </body>
 </html>
