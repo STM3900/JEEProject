@@ -36,13 +36,24 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        ArrayList<Product> products = productDao.AllProducts(request);
+        if(products != null)
+        {
+            request.setAttribute("products", products);
+        }
+        else{
+            request.setAttribute("error", "error get product");
+        }
+
+        //TODO Faire la variable de session pour check si l'user est log ou pas
+
         getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        productDao.InsertProduct(request);
+        // productDao.InsertProduct(request);
         ArrayList<Product> products = productDao.AllProducts(request);
         if(products != null)
         {
