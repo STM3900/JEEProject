@@ -2,6 +2,7 @@ package com.example.JEE_Liquors.dao;
 
 import com.example.JEE_Liquors.Models.Command;
 import com.example.JEE_Liquors.Models.Product;
+import com.example.JEE_Liquors.beans.CartService;
 import com.example.JEE_Liquors.dao.Exceptions.DAOException;
 import com.example.JEE_Liquors.dao.Interfaces.ICommandDao;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
@@ -9,6 +10,8 @@ import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
 import static com.example.JEE_Liquors.dao.DAOUtils.initialisationPreparedStatement;
@@ -101,17 +104,18 @@ public class CommandDAO implements ICommandDao {
     @Override
     public void NewCommand(HttpServletRequest request) {
 
-        //TODO GET THE REAL VALUE
-
-        //TODO REMOVE TEST PURPOSE
-        int userId = 1;
+        Object cart = request.getAttribute("cart");
+        int userId = (int)request.getSession().getAttribute("idUserChartreuse");
+        String payementMethod = "";
+        String deliveryMethod = (String)request.getSession().getAttribute("deliveryMethod");
+        String adress = (String)request.getSession().getAttribute("userAdress");
+        Double totalPrice = CartService.getTotalPrice(request.getSession());
+        List<Object> cartAsList = null;
         ArrayList<Integer> ids = new ArrayList<Integer>() ;
-        ids.add(1);
-        ids.add(8);
-        String payementMethod = "CB";
-        Double totalPrice = 15.00;
-        String deliveryMethod = "Relais";
-        String adress = "12 rue de la poutre 38000 Grenoble";
+        cartAsList = Arrays.asList((Object[])cart);
+        for (Object obj:cartAsList) {
+            ids.add(((Product)obj).getIdProduct());
+        }
 
 
         //SQL_ADD_COMMAND_PRODUCT
