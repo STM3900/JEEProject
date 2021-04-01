@@ -12,6 +12,7 @@
                 <a href="/JEE_Liquors_war/SignIn">Inscription</a>
             </c:if>
             <c:if test="${sessionScope.idUserChartreuse != null }">
+                <a href="/JEE_Liquors_war/Commands">Commandes</a>
                 <a href="/JEE_Liquors_war/Logout">Déconnexion</a>
             </c:if>
         </aside>

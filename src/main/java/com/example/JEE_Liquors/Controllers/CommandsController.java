@@ -10,7 +10,7 @@ public class CommandsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/Commands").forward(request,response);
+        getServletContext().getRequestDispatcher("/WEB-INF/Commands.jsp").forward(request,response);
     }
 
     @Override
