@@ -77,6 +77,36 @@ public class ProductDao implements IProductDao {
     }
 
     @Override
+    public Product DataProduct(HttpServletRequest request, int productId) {
+        String idProduct = String.valueOf(productId);
+
+        //Initialize variables
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Product product = null;
+
+        try {
+            //Get connection
+            connection = daoFactory.getConnection();
+            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_PRODUCT_BY_ID, false, idProduct);
+            resultSet = preparedStatement.executeQuery();
+
+            //Read result if exists
+            if(resultSet.next()) {
+                product = map(resultSet);
+                System.out.println("===========> Product :");
+                System.out.println(product.getName());
+            }
+        } catch (SQLException e){
+            throw new DAOException(e);
+        } finally {
+            SilentClosing(resultSet, preparedStatement, connection);
+        }
+        return product;
+    }
+
+    @Override
     public ArrayList<Product> AllProducts(HttpServletRequest request) {
 
         //Initialize variables
@@ -132,7 +162,7 @@ public class ProductDao implements IProductDao {
             //Get connection
             connection = daoFactory.getConnection();
             preparedStatement = initialisationPreparedStatement(connection, SQL_ADD_PRODUCT, false,img,limitDate,name,quantity,price);
-            int t = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
             //Get Product created
             preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_LAST_PRODUCT_ADDED, false);
