@@ -1,6 +1,7 @@
 package com.example.JEE_Liquors.dao;
 
 import com.example.JEE_Liquors.dao.Exceptions.DAOConfigurationException;
+import com.example.JEE_Liquors.dao.Interfaces.ICommandDao;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import com.example.JEE_Liquors.dao.Interfaces.IUserDao;
 
@@ -70,5 +71,9 @@ public class DAOFactory {
      */
     public IProductDao getProductDao() {
         return new ProductDao( this );
+    }
+
+    public ICommandDao getCommandDao(){
+        return new CommandDAO(this);
     }
 }
