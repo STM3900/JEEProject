@@ -29,7 +29,7 @@ TODO Utiliser la variable de session pour afficher le bouton acheter ou non
                             <h3>${product.name}</h3>
                             <p>${product.quantity}</p>
                         </div>
-                        <p>${product.price}e</p>
+                        <p>${product.price}0€</p>
                     </div>
                     <button>Ajouter au panier</button>
                 </div>
