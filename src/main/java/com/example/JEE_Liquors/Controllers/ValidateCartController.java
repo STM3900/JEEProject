@@ -10,7 +10,7 @@ public class ValidateCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/WEB-INF/ValidateCart.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/ValidateCart").forward(request,response);
 
     }
 

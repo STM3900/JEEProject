@@ -1,14 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav>
     <article>
         <div>
-            <a href="">Home</a>
+            <a href="/JEE_Liquors_war/Home">Home</a>
         </div>
         <aside>
-            <a href="">Connexion</a>
-            <a href="">Inscription</a>
-            <c:if test="${ isConnected == true }">
-                <a href="">Déconnexion</a>
+            <c:if test="${sessionScope.idUserChartreuse == null }">
+                <a href="/JEE_Liquors_war/Login">Connexion</a>
+                <a href="/JEE_Liquors_war/SignIn">Inscription</a>
+            </c:if>
+            <c:if test="${sessionScope.idUserChartreuse != null }">
+                <a href="/JEE_Liquors_war/Logout">Déconnexion</a>
             </c:if>
         </aside>
     </article>

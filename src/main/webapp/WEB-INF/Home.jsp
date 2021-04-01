@@ -7,13 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-<%@ include file="NavBar.jsp" %>
-<!--
-<c:out value="${sessionScope.idUserChartreuse}" />
-<c:out value="${sessionScope.roleUserChartreuse}" />
 
-TODO Utiliser la variable de session pour afficher le bouton acheter ou non
--->
+<%@ include file="NavBar.jsp" %>
+
 <div class="content">
     <header>
         <aside></aside>
@@ -31,7 +27,12 @@ TODO Utiliser la variable de session pour afficher le bouton acheter ou non
                         </div>
                         <p>${product.price}0€</p>
                     </div>
-                    <button>Ajouter au panier</button>
+                    <c:if test="${sessionScope.idUserChartreuse != null }">
+                        <form method="post" action="Home">
+                                <input type="hidden" id="idToAdd" name="idToAdd" value="${ product.idProduct }"/>
+                                <input type="submit" name="addButton"  value="Ajouter au panier"  />
+                        </form>
+                    </c:if>
                 </div>
             </section>
         </c:forEach>

@@ -23,4 +23,39 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/AddProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/Cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommandsController</servlet-name>
+        <url-pattern>/Commands</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/Home</url-pattern>
+        <url-pattern>/</url-pattern>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/Login</url-pattern>
+        <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayUpController</servlet-name>
+        <url-pattern>/PayUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidateCartController</servlet-name>
+        <url-pattern>/ValidateCart</url-pattern>
+    </servlet-mapping>
 </web-app>
