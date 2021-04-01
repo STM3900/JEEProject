@@ -30,13 +30,10 @@ public class ValidateCartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         getServletContext().getRequestDispatcher("/WEB-INF/ValidateCart.jsp").forward(request,response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Object obj = request.getSession().getAttribute("cartChartreuse");
-        request.setAttribute("cart",obj);
         commandDao.NewCommand(request);
         doGet(request, response);
     }

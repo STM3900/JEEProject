@@ -104,16 +104,18 @@ public class CommandDAO implements ICommandDao {
     @Override
     public void NewCommand(HttpServletRequest request) {
 
-        Object cart = request.getAttribute("cart");
         int userId = (int)request.getSession().getAttribute("idUserChartreuse");
         String payementMethod = "";
-        String deliveryMethod = (String)request.getAttribute("deliveryMethod");
-        String adress = (String)request.getAttribute("userAdress");
+        String deliveryMethod = request.getParameter("deliveryMethod");
+        if(deliveryMethod == null)
+            deliveryMethod = "Relais";
+        String address = request.getParameter("userAdress");
+        if(address == null)
+            address = "17 rue de la republique";
         Double totalPrice = CartService.getTotalPrice(request.getSession());
-        List<Object> cartAsList = null;
         ArrayList<Integer> ids = new ArrayList<Integer>() ;
-        cartAsList = Arrays.asList((Object[])cart);
-        for (Object obj:cartAsList) {
+        List<Product> products = (List<Product>) request.getSession().getAttribute("cartChartreuse");
+        for (Object obj:products) {
             ids.add(((Product)obj).getIdProduct());
         }
 
@@ -128,7 +130,7 @@ public class CommandDAO implements ICommandDao {
         try {
             //Get connection
             connection = daoFactory.getConnection();
-            preparedStatement = initialisationPreparedStatement(connection, SQL_CREATE_NEW_COMMAND, false,userId,payementMethod,totalPrice,deliveryMethod,adress);
+            preparedStatement = initialisationPreparedStatement(connection, SQL_CREATE_NEW_COMMAND, false,userId,payementMethod,totalPrice,deliveryMethod,address);
             preparedStatement.executeUpdate();
 
             //Get Product created

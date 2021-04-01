@@ -26,7 +26,7 @@ Welcome in ValidateCart
 <form method="post" action="ValidateCart">
     <fieldset>
         <label for="userAdress">Adress</label>
-        <input type="text" id="userAdress" name="userAdress" placeholder="Entrez votre adresse" size="40" maxlength="60" required="required" value=""/>
+        <input type="text" id="userAdress" name="userAdress" placeholder="Entrez votre adresse" size="40" maxlength="60" required="required" value="address"/>
         <br/>
         <label for="deliveryMethod">Delivery Method</label>
         <input type="text" id="deliveryMethod" name="deliveryMethod" placeholder="Entrez votre moyen de livraison" size="40" maxlength="60" required="required" value="Relais"/>

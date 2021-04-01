@@ -27,12 +27,7 @@
 <h3>Total :
     <c:out value="${ total }" />
 </h3>
-
-<form method="post" action="Cart">
-    <fieldset>
-        <input type="submit" name="validateButton"  value="Commander"  />
-    </fieldset>
-</form>
+<a href="/JEE_Liquors_war/ValidateCart">Commander</a>
 
 <p>User : </p>
 <c:out value="${sessionScope.idUserChartreuse}" />
