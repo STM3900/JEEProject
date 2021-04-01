@@ -28,6 +28,10 @@ public class CommandDAO implements ICommandDao {
     private static  final String SQL_GET_ALL_COMMANDS_USER = "select * from command where idUser = ?";
     private static  final String SQL_GET_COMMAND_PRODUCT_USER = "select * from commandproduct where idCommand = ?";
 
+    private static final String SQL_DELETE_COMMAND_PRODUCT = "DELETE FROM `commandproduct` WHERE idCommand = ?";
+    private static final String SQL_DELETE_COMMAND = "DELETE FROM `command` WHERE idCommand = ?";
+
+    private static final String SQL_PAY_COMMAND = "UPDATE `command` SET `payementMethod` = ? WHERE `idCommand` = ?";
     //#endregion
 
     //#endregion
@@ -139,6 +143,64 @@ public class CommandDAO implements ICommandDao {
         }
     }
 
+    @Override
+    public void DeleteCommand(HttpServletRequest request) {
+
+        //TODO GET THE REAL VALUE
+
+        //TODO REMOVE TEST PURPOSE
+        int commandId = 1;
+
+        //SQL_ADD_COMMAND_PRODUCT
+        //Initialize variables
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            //Get connection
+            connection = daoFactory.getConnection();
+            preparedStatement = initialisationPreparedStatement(connection, SQL_DELETE_COMMAND_PRODUCT, false,commandId);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = initialisationPreparedStatement(connection, SQL_DELETE_COMMAND, false,commandId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            throw new DAOException(e);
+        } finally {
+            SilentClosing(preparedStatement, connection);
+        }
+    }
+
+
+    @Override
+    public void PayCommand(HttpServletRequest request) {
+
+        //TODO GET THE REAL VALUE
+
+        //TODO REMOVE TEST PURPOSE
+        int commandId = 2;
+        String payementMethod = "CB";
+
+        //SQL_ADD_COMMAND_PRODUCT
+        //Initialize variables
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            //Get connection
+            connection = daoFactory.getConnection();
+            preparedStatement = initialisationPreparedStatement(connection, SQL_PAY_COMMAND, false,payementMethod, commandId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            throw new DAOException(e);
+        } finally {
+            SilentClosing(preparedStatement, connection);
+        }
+    }
     //#endregion
 
     /**

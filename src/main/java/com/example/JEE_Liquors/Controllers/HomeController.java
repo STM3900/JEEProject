@@ -40,7 +40,6 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ArrayList<Product> products = productDao.AllProducts(request);
-        System.out.println(commandDao.AllCommandsOfUser(request));
         if(products != null)
         {
             request.setAttribute("products", products);
