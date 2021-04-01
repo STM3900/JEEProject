@@ -107,8 +107,8 @@ public class CommandDAO implements ICommandDao {
         Object cart = request.getAttribute("cart");
         int userId = (int)request.getSession().getAttribute("idUserChartreuse");
         String payementMethod = "";
-        String deliveryMethod = (String)request.getSession().getAttribute("deliveryMethod");
-        String adress = (String)request.getSession().getAttribute("userAdress");
+        String deliveryMethod = (String)request.getAttribute("deliveryMethod");
+        String adress = (String)request.getAttribute("userAdress");
         Double totalPrice = CartService.getTotalPrice(request.getSession());
         List<Object> cartAsList = null;
         ArrayList<Integer> ids = new ArrayList<Integer>() ;

@@ -22,5 +22,18 @@ Welcome in ValidateCart
         </fieldset>
     </form>
 </c:forEach>
+
+<form method="post" action="ValidateCart">
+    <fieldset>
+        <label for="userAdress">Adress</label>
+        <input type="text" id="userAdress" name="userAdress" placeholder="Entrez votre adresse" size="40" maxlength="60" required="required" value=""/>
+        <br/>
+        <label for="deliveryMethod">Delivery Method</label>
+        <input type="text" id="deliveryMethod" name="deliveryMethod" placeholder="Entrez votre moyen de livraison" size="40" maxlength="60" required="required" value="Relais"/>
+    </fieldset>
+    <fieldset>
+        <input type="submit" name="NewCommandButton" value="Command"  />
+    </fieldset>
+</form>
 </body>
 </html>
