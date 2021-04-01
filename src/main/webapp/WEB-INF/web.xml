@@ -13,6 +13,7 @@
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
             <include-prelude>/WEB-INF/tagdirs.jsp</include-prelude>
+            <include-prelude>/WEB-INF/NavBar.jsp</include-prelude>
         </jsp-property-group>
     </jsp-config>
     <servlet-mapping>

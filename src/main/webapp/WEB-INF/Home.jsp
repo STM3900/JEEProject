@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-<%@ include file="NavBar.jsp" %>
 <!--
 <c:out value="${sessionScope.idUserChartreuse}" />
 <c:out value="${sessionScope.roleUserChartreuse}" />
