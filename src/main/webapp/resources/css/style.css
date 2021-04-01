@@ -72,7 +72,7 @@ header aside {
     width: 80%;
 
     /* The image used */
-    background-image: url("fond.jpg");
+    background-image: url("../images/fond.jpg");
 
     /* Create the parallax scrolling effect */
     background-position: center;
