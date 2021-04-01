@@ -1,6 +1,7 @@
 package com.example.JEE_Liquors.Controllers;
 
 import com.example.JEE_Liquors.Models.Product;
+import com.example.JEE_Liquors.dao.Interfaces.ICommandDao;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import com.example.JEE_Liquors.dao.DAOFactory;
 
@@ -18,6 +19,7 @@ public class HomeController extends HttpServlet {
     //#region Private Properties
 
     private IProductDao productDao;
+    private ICommandDao commandDao;
 
     //#endregion
 
@@ -29,6 +31,7 @@ public class HomeController extends HttpServlet {
 
     public void init() {
         this.productDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getProductDao();
+        this.commandDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCommandDao();
     }
 
     //#endregion
@@ -54,6 +57,7 @@ public class HomeController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // productDao.InsertProduct(request);
+        commandDao.NewCommand(request);
         ArrayList<Product> products = productDao.AllProducts(request);
         if(products != null)
         {

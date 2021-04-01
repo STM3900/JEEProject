@@ -17,6 +17,14 @@ public interface IProductDao {
     /**
      * Convert database result in usable product
      * @param request request
+     * @param int idProduct
+     * @return product
+     */
+    Product DataProduct(HttpServletRequest request,int idProduct);
+
+    /**
+     * Convert database result in usable product
+     * @param request request
      * @return products
      */
     ArrayList<Product> AllProducts(HttpServletRequest request);
