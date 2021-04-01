@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
             if(user != null){
                 sessionManager = new SessionManager(session);
                 sessionManager.CreateSessionUser(user);
-                getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/Home").forward(request,response);
             }
             else{
                 request.setAttribute("error", "Login error");
@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet {
             if(user != null){
                 sessionManager = new SessionManager(session);
                 sessionManager.CreateSessionUser(user);
-                getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/Home").forward(request,response);
             }
             else{
                 request.setAttribute("error", "Sign in error");

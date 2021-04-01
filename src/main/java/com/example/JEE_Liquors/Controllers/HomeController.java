@@ -1,7 +1,7 @@
 package com.example.JEE_Liquors.Controllers;
 
 import com.example.JEE_Liquors.Models.Product;
-import com.example.JEE_Liquors.dao.Interfaces.ICommandDao;
+import com.example.JEE_Liquors.beans.SessionManager;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 import com.example.JEE_Liquors.dao.DAOFactory;
 
@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.JEE_Liquors.dao.DAOProperties.CONF_DAO_FACTORY;
 
@@ -19,7 +20,7 @@ public class HomeController extends HttpServlet {
     //#region Private Properties
 
     private IProductDao productDao;
-    private ICommandDao commandDao;
+    private ArrayList<Product> products;
 
     //#endregion
 
@@ -31,7 +32,6 @@ public class HomeController extends HttpServlet {
 
     public void init() {
         this.productDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getProductDao();
-        this.commandDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCommandDao();
     }
 
     //#endregion
@@ -39,7 +39,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ArrayList<Product> products = productDao.AllProducts(request);
+        products = productDao.AllProducts(request);
         if(products != null)
         {
             request.setAttribute("products", products);
@@ -56,9 +56,10 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // productDao.InsertProduct(request);
-        commandDao.NewCommand(request);
-        ArrayList<Product> products = productDao.AllProducts(request);
+        if(request.getParameter("addButton") != null){
+            SessionManager sessionManager = new SessionManager(request.getSession());
+            sessionManager.AddProductSessionCart(getProductById(Integer.parseInt(request.getParameter("idToAdd")), products));
+        }
         if(products != null)
         {
             request.setAttribute("products", products);
@@ -68,5 +69,19 @@ public class HomeController extends HttpServlet {
         }
 
         doGet(request,response);
+    }
+
+    /**
+     * Get product by id
+     * @param id idProduct
+     * @param products list of products
+     * @return product corresponding
+     */
+    private static Product getProductById(Integer id, List<Product> products){
+        for (Product product: products) {
+            if (product.getIdProduct() == id)
+                return product;
+        }
+        return null;
     }
 }

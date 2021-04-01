@@ -50,7 +50,7 @@ public class CartController extends HttpServlet {
 
         //Validate command
         if(request.getParameter("validateButton") != null) {
-            getServletContext().getRequestDispatcher("/WEB-INF/ValidateCart.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/ValidateCart").forward(request, response);
         }
         //Remove from cart
         else if(request.getParameter("deleteButton") != null){

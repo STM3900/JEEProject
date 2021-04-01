@@ -37,7 +37,7 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/WEB-INF/AddProduct.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/AddProduct").forward(request,response);
 
     }
 
