@@ -17,7 +17,7 @@
 # Work 
 
 ## Views
-+ [ ] Menu : links
++ [x] Menu : links
   + [x] Home
   + [x] Login
   + [x] Sign up

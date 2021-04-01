@@ -4,6 +4,7 @@ import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.Models.User;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,28 +52,12 @@ public class SessionManager {
     //#region Cart
 
     /**
-     * Create Session data for cart
-     * @param products list products in cart
-     */
-    public void CreateSessionCart(List<Product> products) {
-        session.setAttribute(cartLabel, products);
-    }
-
-    /**
      * Add product to Session data for cart
+     * Create an param in session if not exists
      */
     public void AddProductSessionCart(Product product) {
-        List<Product> products = (List<Product>) session.getAttribute(cartLabel);
+        List<Product> products = (session.getAttribute(cartLabel) != null) ? (List<Product>) session.getAttribute(cartLabel) : new ArrayList<Product>() {};
         products.add(product);
-        session.setAttribute(cartLabel, products);
-    }
-
-    /**
-     * Add products to Session data for cart
-     */
-    public void AddProductSessionCart(List<Product> products) {
-        List<Product> allproducts = (List<Product>) session.getAttribute(cartLabel);
-        allproducts.addAll(products);
         session.setAttribute(cartLabel, products);
     }
 

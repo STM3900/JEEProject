@@ -14,11 +14,6 @@ public class LogoutController extends HttpServlet {
 
         SessionManager sessionManager = new SessionManager(request.getSession());
         sessionManager.DestroySession();
-        getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        getServletContext().getRequestDispatcher("/Home").forward(request,response);
     }
 }
