@@ -29,7 +29,7 @@
 <form method="post" action="SignIn">
     <fieldset>
         <label for="firstName">firstName</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" size="40" maxlength="60" required="required" value="Dalai"/>
+        <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" size="40" maxlength="60" required="required" value="Dalaï"/>
         <br/>
         <label for="lastName">lastName</label>
         <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" size="40" maxlength="60" required="required" value="Lama"/>
