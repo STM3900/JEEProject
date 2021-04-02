@@ -41,15 +41,13 @@ public class ValidateCartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("totalPrice", getTotalPrice(request.getSession()));
-
-        System.out.println("Price double : " + request.getAttribute("totalPrice"));
-        System.out.println("Price finally ok");
         Command command = commandDao.NewCommand(request);
         //Command ok
         if(command !=null){
-            request.setAttribute("command", command);
-            //Delete session cart
+            //Add command to session
             SessionManager sessionManager = new SessionManager(request.getSession());
+            sessionManager.CreateSessionCommand(command);
+            //Delete session cart
             sessionManager.DeleteSessionCart();
         }
         else{

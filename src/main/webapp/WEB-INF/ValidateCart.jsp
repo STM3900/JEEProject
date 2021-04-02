@@ -4,7 +4,7 @@
 </head>
 <body>
 <!-- Post command -->
-<c:if test="${command.deliveryMethod == null}" >
+<c:if test="${sessionScope.commandChartreuse == null}" >
     <p>Votre panier contient ${ sessionScope.cartChartreuse.size() } articles :</p>
 
     <c:forEach var="product" items="${ sessionScope.cartChartreuse }">
@@ -38,13 +38,13 @@
 </c:if>
 
 <!-- Propose payment -->
-<c:if test="${ command.deliveryMethod != null}" >
+<c:if test="${ sessionScope.commandChartreuse != null}" >
 
     <p>Votre commande a été enregistrée !</p>
     <div>
-        <p>Montant : <c:out value="${command.totalPrice}"/></p>
-        <p>Mode de livraison : <c:out value="${command.deliveryMethod}"/></p>
-        <p>Adresse : <c:out value="${command.address}"/></p>
+        <p>Montant : <c:out value="${sessionScope.commandChartreuse.totalPrice}"/></p>
+        <p>Mode de livraison : <c:out value="${sessionScope.commandChartreuse.deliveryMethod}"/></p>
+        <p>Adresse : <c:out value="${sessionScope.commandChartreuse.address}"/></p>
     </div>
     <a href="/JEE_Liquors_war/PayUp">Passer au paiement</a>
 </c:if>

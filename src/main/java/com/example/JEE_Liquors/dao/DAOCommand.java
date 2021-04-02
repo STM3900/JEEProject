@@ -2,7 +2,6 @@ package com.example.JEE_Liquors.dao;
 
 import com.example.JEE_Liquors.Models.Command;
 import com.example.JEE_Liquors.Models.Product;
-import com.example.JEE_Liquors.beans.CartService;
 import com.example.JEE_Liquors.dao.Exceptions.DAOException;
 import com.example.JEE_Liquors.dao.Interfaces.ICommandDao;
 
@@ -25,6 +24,7 @@ public class DAOCommand implements ICommandDao {
     private static final String SQL_CREATE_NEW_COMMAND = "INSERT INTO `command` (`idUser`, `totalPrice`, `deliveryMethod`, `address`) VALUES (?,?,?,?); ";
     private static final String SQL_ADD_COMMAND_PRODUCT = "INSERT INTO `commandproduct`(`idCommand`, `idProduct`) VALUES (?,?); ";
     private static final String SQL_GET_LAST_COMMAND = "select idCommand, totalPrice, deliveryMethod, address from command ORDER BY idCommand DESC LIMIT 1";
+    private static final String SQL_GET_COMMAND_BY_ID = "select * from command where idCommand = ?";
 
     private static  final String SQL_GET_ALL_COMMANDS_USER = "select * from command where idUser = ?";
     private static  final String SQL_GET_COMMAND_PRODUCT_USER = "select * from commandproduct where idCommand = ?";
@@ -171,18 +171,17 @@ public class DAOCommand implements ICommandDao {
     }
 
     @Override
-    public void PayCommand(HttpServletRequest request) {
+    public Command PayCommand(HttpServletRequest request) {
 
-        //TODO GET THE REAL VALUE
+        //Get request values
+        int commandId = Integer.parseInt(request.getParameter("idCommand"));
+        String paymentMethod = request.getParameter("modePayment");
 
-        //TODO REMOVE TEST PURPOSE
-        int commandId = 2;
-        String paymentMethod = "CB";
-
-        //SQL_ADD_COMMAND_PRODUCT
         //Initialize variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Command command = null;
 
         try {
             //Get connection
@@ -190,11 +189,22 @@ public class DAOCommand implements ICommandDao {
             preparedStatement = initialisationPreparedStatement(connection, SQL_PAY_COMMAND, false,paymentMethod, commandId);
             preparedStatement.executeUpdate();
 
+            //Get Command created
+            preparedStatement = initialisationPreparedStatement(connection, SQL_GET_COMMAND_BY_ID, false, commandId);
+            resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            //Save command created
+            command = map(resultSet);
+
         } catch (SQLException e){
             throw new DAOException(e);
         } finally {
             SilentClosing(preparedStatement, connection);
         }
+
+        return command;
     }
     //#endregion
 
@@ -205,7 +215,15 @@ public class DAOCommand implements ICommandDao {
      * @throws SQLException sqlException
      */
     private static Command map( ResultSet resultSet ) throws SQLException {
+        String payment = null;
+        try{
+            payment = resultSet.getString("paymentMethod");
+        }
+        catch(Exception e){
+            System.out.println("error with payment method");
+        }
         return new Command(resultSet.getInt("idCommand"),
+                payment,
                 resultSet.getDouble("totalPrice"),
                 resultSet.getString("deliveryMethod"),
                 resultSet.getString("address"));
