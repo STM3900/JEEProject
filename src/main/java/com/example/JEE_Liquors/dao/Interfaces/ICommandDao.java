@@ -21,19 +21,17 @@ public interface ICommandDao {
      * @param request request
      * @return void
      */
-    void NewCommand(HttpServletRequest request);
+    Command NewCommand(HttpServletRequest request);
 
      /**
      * Insert object in database
      * @param request request
-     * @return void
      */
      void DeleteCommand(HttpServletRequest request);
 
     /**
      * Insert object in database
      * @param request request
-     * @return void
      */
     void PayCommand(HttpServletRequest request);
 }

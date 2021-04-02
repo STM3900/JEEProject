@@ -22,8 +22,26 @@ public class Command {
      */
     public Command(){}
 
+    /**
+     * Constructor
+     * @param _commandId id command
+     */
     public Command(int _commandId){
         commandId = _commandId;
+    }
+
+    /**
+     * Constructor
+     * @param _commandId command id
+     * @param _totalPrice total price
+     * @param _deliveryMethod delivery method
+     * @param _address address
+     */
+    public Command(int _commandId,Double _totalPrice,String _deliveryMethod,String _address){
+        commandId = _commandId;
+        totalPrice =_totalPrice;
+        deliveryMethod = _deliveryMethod;
+        address = _address;
     }
 
     /**

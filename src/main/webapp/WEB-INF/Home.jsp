@@ -28,7 +28,7 @@
                     <div class="article-info-title">
                         <div>
                             <h3>${product.name}</h3>
-                            <p>${product.quantity}</p>
+                            <p>${product.quantity} L</p>
                         </div>
                         <p>${product.price}€</p>
                     </div>

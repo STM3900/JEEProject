@@ -14,7 +14,7 @@ import java.util.List;
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
 import static com.example.JEE_Liquors.dao.DAOUtils.initialisationPreparedStatement;
 
-public class CommandDAO implements ICommandDao {
+public class DAOCommand implements ICommandDao {
 
     //#region Private Properties
 
@@ -22,9 +22,9 @@ public class CommandDAO implements ICommandDao {
 
     //#region Requests
 
-    private static final String SQL_CREATE_NEW_COMMAND = "INSERT INTO `command` (`idUser`, `paymentMethod`, `totalPrice`, `deliveryMethod`, `address`) VALUES (?,?,?,?,?); ";
+    private static final String SQL_CREATE_NEW_COMMAND = "INSERT INTO `command` (`idUser`, `totalPrice`, `deliveryMethod`, `address`) VALUES (?,?,?,?); ";
     private static final String SQL_ADD_COMMAND_PRODUCT = "INSERT INTO `commandproduct`(`idCommand`, `idProduct`) VALUES (?,?); ";
-    private static final String SQL_GET_LAST_COMMAND = "select idCommand from command ORDER BY idCommand DESC LIMIT 1";
+    private static final String SQL_GET_LAST_COMMAND = "select idCommand, totalPrice, deliveryMethod, address from command ORDER BY idCommand DESC LIMIT 1";
 
     private static  final String SQL_GET_ALL_COMMANDS_USER = "select * from command where idUser = ?";
     private static  final String SQL_GET_COMMAND_PRODUCT_USER = "select * from commandproduct where idCommand = ?";
@@ -43,7 +43,7 @@ public class CommandDAO implements ICommandDao {
      * Constructor
      * @param daoFactory daoFactory
      */
-    public CommandDAO(DAOFactory daoFactory ) {
+    public DAOCommand(DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
     }
 
@@ -74,11 +74,7 @@ public class CommandDAO implements ICommandDao {
 
             //Read result if exists
             while(resultSet.next()) {
-                Command cmd = new Command(resultSet.getInt(1),
-                        resultSet.getString(3),
-                        resultSet.getDouble(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6));
+                Command cmd = map(resultSet);
 
                 preparedStatement = initialisationPreparedStatement(connection, SQL_GET_COMMAND_PRODUCT_USER, false,cmd.getCommandId());
                 productsIdsResult = preparedStatement.executeQuery();
@@ -99,49 +95,50 @@ public class CommandDAO implements ICommandDao {
     }
 
     @Override
-    public void NewCommand(HttpServletRequest request) {
+    public Command NewCommand(HttpServletRequest request) {
 
-        int userId = (int)request.getSession().getAttribute("idUserChartreuse");
-        String paymentMethod = "";
+        //Get values from request
+        int userId = (int) request.getSession().getAttribute("idUserChartreuse");
         String deliveryMethod = request.getParameter("deliveryMethod");
-        if(deliveryMethod == null)
-            deliveryMethod = "Relais";
         String address = request.getParameter("userAddress");
-        if(address == null)
-            address = "17 rue de la republique";
-        Double totalPrice = CartService.getTotalPrice(request.getSession());
-        ArrayList<Integer> ids = new ArrayList<>() ;
-        List<Product> products = (List<Product>) request.getSession().getAttribute("cartChartreuse");
-        for (Object obj:products) {
-            ids.add(((Product)obj).getIdProduct());
+        Double totalPrice = (Double) request.getAttribute("totalPrice");
+        //get products id
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (Object obj : (List<Product>) request.getSession().getAttribute("cartChartreuse")) {
+            ids.add(((Product) obj).getIdProduct());
         }
 
-
-        //SQL_ADD_COMMAND_PRODUCT
         //Initialize variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        Command command = null;
 
         try {
             //Get connection
             connection = daoFactory.getConnection();
-            preparedStatement = initialisationPreparedStatement(connection, SQL_CREATE_NEW_COMMAND, false,userId,paymentMethod,totalPrice,deliveryMethod,address);
+            preparedStatement = initialisationPreparedStatement(connection, SQL_CREATE_NEW_COMMAND, false, userId, totalPrice, deliveryMethod, address);
             preparedStatement.executeUpdate();
 
             //Get Command created
             preparedStatement = initialisationPreparedStatement(connection, SQL_GET_LAST_COMMAND, false);
-            preparedStatement.executeQuery().next();
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
             for (int id: ids) {
-                preparedStatement = initialisationPreparedStatement(connection, SQL_ADD_COMMAND_PRODUCT, false,resultSet.getInt(1),id);
+                preparedStatement = initialisationPreparedStatement(connection, SQL_ADD_COMMAND_PRODUCT, false,resultSet.getInt("idCommand"),id);
                 preparedStatement.executeUpdate();
             }
+
+            //Save command created
+            command = map(resultSet);
 
         } catch (SQLException e){
             throw new DAOException(e);
         } finally {
             SilentClosing(preparedStatement, connection);
         }
+        return command;
     }
 
     @Override
@@ -173,7 +170,6 @@ public class CommandDAO implements ICommandDao {
         }
     }
 
-
     @Override
     public void PayCommand(HttpServletRequest request) {
 
@@ -201,5 +197,18 @@ public class CommandDAO implements ICommandDao {
         }
     }
     //#endregion
+
+    /**
+     * Convert resultSet into command
+     * @param resultSet resultSet
+     * @return Command
+     * @throws SQLException sqlException
+     */
+    private static Command map( ResultSet resultSet ) throws SQLException {
+        return new Command(resultSet.getInt("idCommand"),
+                resultSet.getDouble("totalPrice"),
+                resultSet.getString("deliveryMethod"),
+                resultSet.getString("address"));
+    }
 
 }

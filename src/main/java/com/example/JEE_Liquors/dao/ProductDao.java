@@ -98,8 +98,6 @@ public class ProductDao implements IProductDao {
                     resultSet.getDouble("quantity"));
                 //Product pr =
                 products.add(pr);
-                System.out.println("===========> Product :");
-                System.out.println(products.get(products.size()-1).getName());
             }
         } catch (SQLException e){
             throw new DAOException(e);

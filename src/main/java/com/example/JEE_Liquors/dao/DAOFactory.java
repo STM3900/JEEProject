@@ -74,6 +74,6 @@ public class DAOFactory {
     }
 
     public ICommandDao getCommandDao(){
-        return new CommandDAO(this);
+        return new DAOCommand(this);
     }
 }
