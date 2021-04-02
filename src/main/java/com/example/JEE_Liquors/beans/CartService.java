@@ -19,15 +19,23 @@ public class CartService {
         for (Product product: cartProducts) {
             total += product.getPrice();
         }
-        return round(total, 2); // returns 200.35total;
+        return round(total);
     }
 
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        long factor = (long) Math.pow(10, places);
-        value = value * factor;
-        long tmp = Math.round(value);
-        return (double) tmp / factor;
+    /**
+     * Round double to x numbers after decimal
+     * @param value double
+     * @return double rounded
+     */
+    private static double round(double value) {
+        try{
+            long factor = (long) Math.pow(10, 2);
+            value = value * factor;
+            long tmp = Math.round(value);
+            return (double) tmp / factor;
+        }
+        catch(Exception e){
+            return value;
+        }
     }
 }

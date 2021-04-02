@@ -17,7 +17,7 @@ public class SessionManager {
     private final static String idUserLabel =  "idUserChartreuse";
     private final static String roleUserLabel =  "roleUserChartreuse";
     private final static String cartLabel =  "cartChartreuse";
-    private HttpSession session;
+    private final HttpSession session;
 
     //#endregion
 

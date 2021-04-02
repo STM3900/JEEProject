@@ -1,8 +1,6 @@
 package com.example.JEE_Liquors.Controllers;
 
 import com.example.JEE_Liquors.Models.Product;
-import com.example.JEE_Liquors.Models.User;
-import com.example.JEE_Liquors.beans.SessionManager;
 import com.example.JEE_Liquors.dao.DAOFactory;
 import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 

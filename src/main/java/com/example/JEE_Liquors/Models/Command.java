@@ -4,30 +4,55 @@ import java.util.ArrayList;
 
 public class Command {
 
+    //#region Private Properties
+
     private int commandId;
-    private String payementMethod;
+    private String paymentMethod;
     private Double totalPrice;
     private String deliveryMethod;
-    private String adress;
+    private String address;
     private ArrayList<Product> products = new ArrayList<>();
 
+    //#endregion
+
+    //#region Constructors
+
+    /**
+     * Constructor (empty)
+     */
     public Command(){}
 
     public Command(int _commandId){
         commandId = _commandId;
     }
 
-    public Command(int _commandId,String _payementMethod, Double _totalPrice,String _deliveryMethod,String _adress){
+    /**
+     * Constructor
+     * @param _commandId command id
+     * @param _paymentMethod payment method
+     * @param _totalPrice total price
+     * @param _deliveryMethod delivery method
+     * @param _address address
+     */
+    public Command(int _commandId,String _paymentMethod, Double _totalPrice,String _deliveryMethod,String _address){
         commandId = _commandId;
-        payementMethod = _payementMethod;
+        paymentMethod = _paymentMethod;
         totalPrice =_totalPrice;
         deliveryMethod = _deliveryMethod;
-        adress = _adress;
+        address = _address;
     }
 
+    /**
+     * Constructor
+     * @param _products product id list
+     */
     public Command(ArrayList<Product> _products){
         products = _products;
     }
+
+    //#endregion
+
+    //#region Getter & Setter
 
     public ArrayList<Product> getProducts(){
         return products;
@@ -37,11 +62,25 @@ public class Command {
         products.add(_product);
     }
 
-    public void setProducts(ArrayList<Product> _products){
-        products = _products;
-    }
-
     public int getCommandId(){
         return  commandId;
     }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getDeliveryMethod() {
+        return deliveryMethod;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    //#endregion
 }

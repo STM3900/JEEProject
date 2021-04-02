@@ -6,7 +6,6 @@ import com.example.JEE_Liquors.dao.Interfaces.IProductDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import static com.example.JEE_Liquors.dao.DAOUtils.SilentClosing;
@@ -65,38 +64,6 @@ public class ProductDao implements IProductDao {
             //Read result if exists
             if(resultSet.next()) {
                 product = map(resultSet);
-                System.out.println("===========> Product :");
-                System.out.println(product.getName());
-            }
-        } catch (SQLException e){
-            throw new DAOException(e);
-        } finally {
-            SilentClosing(resultSet, preparedStatement, connection);
-        }
-        return product;
-    }
-
-    @Override
-    public Product DataProduct(HttpServletRequest request, int productId) {
-        String idProduct = String.valueOf(productId);
-
-        //Initialize variables
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        Product product = null;
-
-        try {
-            //Get connection
-            connection = daoFactory.getConnection();
-            preparedStatement = initialisationPreparedStatement(connection, SQL_SELECT_PRODUCT_BY_ID, false, idProduct);
-            resultSet = preparedStatement.executeQuery();
-
-            //Read result if exists
-            if(resultSet.next()) {
-                product = map(resultSet);
-                System.out.println("===========> Product :");
-                System.out.println(product.getName());
             }
         } catch (SQLException e){
             throw new DAOException(e);
@@ -113,7 +80,7 @@ public class ProductDao implements IProductDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<Product> products = new ArrayList<>();
 
         try {
             //Get connection

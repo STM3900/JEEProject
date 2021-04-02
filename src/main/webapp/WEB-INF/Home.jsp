@@ -30,7 +30,7 @@
                             <h3>${product.name}</h3>
                             <p>${product.quantity}</p>
                         </div>
-                        <p>${product.price}0€</p>
+                        <p>${product.price}€</p>
                     </div>
                     <c:if test="${sessionScope.idUserChartreuse != null }">
                         <form method="post" action="Home">

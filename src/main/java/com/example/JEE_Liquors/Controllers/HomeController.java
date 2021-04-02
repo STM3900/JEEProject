@@ -48,8 +48,6 @@ public class HomeController extends HttpServlet {
             request.setAttribute("error", "error get product");
         }
 
-        //TODO Faire la variable de session pour check si l'user est log ou pas
-
         getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request,response);
     }
 

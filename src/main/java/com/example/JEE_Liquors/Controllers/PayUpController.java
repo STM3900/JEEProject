@@ -1,13 +1,11 @@
 package com.example.JEE_Liquors.Controllers;
 
-import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.beans.SessionManager;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "PayUpController", value = "/PayUp")
 public class PayUpController extends HttpServlet {
