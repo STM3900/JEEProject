@@ -36,6 +36,7 @@ Welcome in PayUP
         <p>Mode de paiement : <c:out value="${commandPayed.paymentMethod}"/></p>
     </div>
     <p>Thank you for your patronage !</p>
+    <a href="/JEE_Liquors_war/Commands">Voir Mes Commandes</a>
 </c:if>
 <c:if test="${ sessionScope.commandChartreuse == null && commandPayed.deliveryMethod == null }" >
     <p>Erreur de la banque en votre faveur! La commande a déjà été payée.</p>

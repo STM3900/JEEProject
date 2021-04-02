@@ -54,10 +54,7 @@ public class DAOCommand implements ICommandDao {
     @Override
     public ArrayList<Command> AllCommandsOfUser(HttpServletRequest request) {
 
-        //TODO GET REAL VALUES
-
-        //TODO REMOVE TEST PURPOSE
-        int userId = 1;
+        int userId = (int) request.getSession().getAttribute("idUserChartreuse");
 
         //Initialize variables
         Connection connection = null;
@@ -142,14 +139,8 @@ public class DAOCommand implements ICommandDao {
     }
 
     @Override
-    public void DeleteCommand(HttpServletRequest request) {
+    public void DeleteCommand(int commandId) {
 
-        //TODO GET THE REAL VALUE
-
-        //TODO REMOVE TEST PURPOSE
-        int commandId = 1;
-
-        //SQL_ADD_COMMAND_PRODUCT
         //Initialize variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -220,7 +211,7 @@ public class DAOCommand implements ICommandDao {
             payment = resultSet.getString("paymentMethod");
         }
         catch(Exception e){
-            System.out.println("error with payment method");
+            System.out.println("no payment method");
         }
         return new Command(resultSet.getInt("idCommand"),
                 payment,

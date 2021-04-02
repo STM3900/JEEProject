@@ -35,8 +35,7 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/AddProduct").forward(request,response);
-
+        getServletContext().getRequestDispatcher("/WEB-INF//AddProduct.jsp").forward(request,response);
     }
 
     @Override
@@ -44,11 +43,10 @@ public class AddProductController extends HttpServlet {
 
         Product product = productDao.InsertProduct(request);
         if(product != null){
-
             request.setAttribute("product", product);
         }
         else{
-            request.setAttribute("error", "Login error");
+            request.setAttribute("error", "Error when adding product to database");
         }
         doGet(request, response);
     }
