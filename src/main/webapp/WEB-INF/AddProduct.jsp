@@ -82,7 +82,7 @@
         </article>
     </div>
     <c:if test="${ product != null }">
-        <h1 class="success">Le produit à bien été ajouté</h1>
+        <h1 class="success">Le produit <c:out value="${product.name}"/> a bien été ajouté</h1>
     </c:if>
 </div>
 </body>

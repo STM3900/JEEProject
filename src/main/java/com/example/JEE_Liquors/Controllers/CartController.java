@@ -24,7 +24,6 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         //Validate command
         if(request.getParameter("validateButton") != null) {
             getServletContext().getRequestDispatcher("/ValidateCart").forward(request, response);

@@ -24,9 +24,9 @@ public interface ICommandDao {
 
      /**
      * Insert object in database
-     * @param request request
+     * @param commandId id of command
      */
-     void DeleteCommand(HttpServletRequest request);
+     void DeleteCommand(int commandId);
 
     /**
      * Insert object in database
