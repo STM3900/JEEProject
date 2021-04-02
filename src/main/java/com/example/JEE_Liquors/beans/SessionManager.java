@@ -1,5 +1,6 @@
 package com.example.JEE_Liquors.beans;
 
+import com.example.JEE_Liquors.Models.Command;
 import com.example.JEE_Liquors.Models.Product;
 import com.example.JEE_Liquors.Models.User;
 
@@ -17,7 +18,8 @@ public class SessionManager {
     private final static String idUserLabel =  "idUserChartreuse";
     private final static String roleUserLabel =  "roleUserChartreuse";
     private final static String cartLabel =  "cartChartreuse";
-    private HttpSession session;
+    private final static String commandLabel =  "commandChartreuse";
+    private final HttpSession session;
 
     //#endregion
 
@@ -84,11 +86,32 @@ public class SessionManager {
 
     //#endregion
 
+    //#region Command
+
+    /**
+     * Create session data for command
+     * @param command command selected
+     */
+    public void CreateSessionCommand(Command command){
+        session.setAttribute(commandLabel, command);
+    }
+
+    /**
+     * Remove Session data for cart
+     */
+    public void DeleteSessionCommand() {
+        session.removeAttribute(commandLabel);
+    }
+
+    //#endregion
+
     /**
      * Destroy Session data
      */
     public void DestroySession() {
         session.removeAttribute(idUserLabel);
+        session.removeAttribute(roleUserLabel);
+        session.removeAttribute(commandLabel);
         session.removeAttribute(cartLabel);
         session.invalidate();
     }

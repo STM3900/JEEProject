@@ -1,7 +1,6 @@
 package com.example.JEE_Liquors.dao.Interfaces;
 
 import com.example.JEE_Liquors.Models.Command;
-import com.example.JEE_Liquors.Models.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -19,21 +18,20 @@ public interface ICommandDao {
     /**
      * Insert object in database
      * @param request request
-     * @return void
+     * @return Command created
      */
-    void NewCommand(HttpServletRequest request);
+    Command NewCommand(HttpServletRequest request);
 
      /**
      * Insert object in database
      * @param request request
-     * @return void
      */
      void DeleteCommand(HttpServletRequest request);
 
     /**
      * Insert object in database
      * @param request request
-     * @return void
+     * @return Command edited
      */
-    void PayCommand(HttpServletRequest request);
+    Command PayCommand(HttpServletRequest request);
 }

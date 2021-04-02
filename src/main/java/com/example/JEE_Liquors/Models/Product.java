@@ -43,7 +43,6 @@ public class Product {
 
     /**
      * Constructor
-     * @param idProduct ID Product
      * @param name Name Product
      * @param price Price
      * @param image Image

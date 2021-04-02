@@ -87,7 +87,7 @@ public class UserDao implements IUserDao {
             //Get connection
             connection = daoFactory.getConnection();
             preparedStatement = initialisationPreparedStatement(connection, SQL_INSERT_USER, false,firstName, lastName, login, password);
-            int t = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e){
             throw new DAOException(e);

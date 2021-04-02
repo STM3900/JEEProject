@@ -18,7 +18,6 @@ public class LoginController extends HttpServlet {
     //#region Private Properties
 
     private IUserDao userDao;
-    private SessionManager sessionManager;
 
     //#endregion
 
@@ -43,14 +42,13 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        SessionManager sessionManager = new SessionManager(request.getSession());
 
         //Login
         if(request.getParameter("loginButton") != null)
         {
             User user = userDao.DataUser(request);
             if(user != null){
-                sessionManager = new SessionManager(session);
                 sessionManager.CreateSessionUser(user);
                 getServletContext().getRequestDispatcher("/Home").forward(request,response);
             }
@@ -62,7 +60,6 @@ public class LoginController extends HttpServlet {
         else{
             User user = userDao.AddUser(request);
             if(user != null){
-                sessionManager = new SessionManager(session);
                 sessionManager.CreateSessionUser(user);
                 getServletContext().getRequestDispatcher("/Home").forward(request,response);
             }
