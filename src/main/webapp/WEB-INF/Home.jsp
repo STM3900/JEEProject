@@ -35,7 +35,7 @@
                     <c:if test="${sessionScope.idUserChartreuse != null }">
                         <form method="post" action="Home">
                                 <input type="hidden" id="idToAdd" name="idToAdd" value="${ product.idProduct }"/>
-                                <input type="submit" name="addButton"  value="Ajouter au panier"  />
+                                <input type="submit" name="addButton" class="button" value="Ajouter au panier"  />
                         </form>
                     </c:if>
                 </div>
