@@ -1,6 +1,10 @@
 <html>
 <head>
     <title>Commands</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/373a1c097b.js" crossorigin="anonymous"></script>
 </head>
 <body>
 

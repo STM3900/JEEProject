@@ -468,11 +468,82 @@ header h1 {
     align-items: stretch;
     align-content: center;
 
-    height: 150px;
     width: 25%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     padding: 15px;
     margin-bottom: 15px;
+}
+
+/* Pour la validation du panier */
+.cart-buy form aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.cart-buy form input {
+    width: 100%;
+}
+
+.cart-buy form aside select {
+    width: 100%;
+}
+
+.auth-main form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+}
+
+.cart-buy form input:not([type="submit"]),
+.cart-buy form select {
+    border: none;
+    border-bottom: solid 2px rgb(128, 128, 128);
+    font-size: 20px;
+    padding: 5px;
+    background: transparent;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.cart-buy form input:focus,
+.cart-buy form select:focus {
+    outline: none;
+    filter: brightness(0.95);
+}
+
+.cart-buy form aside i {
+    margin-right: 10px;
+}
+
+.confirmed-command {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 15px;
+}
+
+.confirmed-command p {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.confirmed-command a {
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 1100px) {
