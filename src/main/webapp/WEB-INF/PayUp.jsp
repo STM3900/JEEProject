@@ -15,15 +15,15 @@
                 <div class="commands-list-group">
                     <div>
                         <h3><i class="fas fa-euro-sign"></i> Montant :</h3>
-                        <p>20€</p>
+                        <p><c:out value="${sessionScope.commandChartreuse.totalPrice}"/>€</p>
                     </div>
                     <div>
                         <h3><i class="fas fa-truck"></i> Mode de livraison :</h3>
-                        <p>En point relais</p>
+                        <p><c:out value="${sessionScope.commandChartreuse.deliveryMethod}"/></p>
                     </div>
                     <div>
                         <h3><i class="fas fa-map-marker-alt"></i> Adresse :</h3>
-                        <p>3 rue alphonse Terray</p>
+                        <p><c:out value="${sessionScope.commandChartreuse.address}"/></p>
                     </div>
                 </div>
                 <div class="commands-list-group"></div>
@@ -67,21 +67,21 @@
                 <div class="commands-list-group">
                     <div>
                         <h3><i class="fas fa-euro-sign"></i> Montant :</h3>
-                        <p>20€</p>
+                        <p><c:out value="${commandPayed.totalPrice}"/>€</p>
                     </div>
                     <div>
                         <h3><i class="fas fa-euro-sign"></i> Mode de paiement :</h3>
-                        <p>CB</p>
+                        <p><c:out value="${commandPayed.paymentMethod}"/></p>
                     </div>
                     <div>
                         <h3><i class="fas fa-truck"></i> Mode de livraison :</h3>
-                        <p>En point relais</p>
+                        <p><c:out value="${commandPayed.deliveryMethod}"/></p>
                     </div>
                 </div>
                 <div class="commands-list-group">
                     <div>
                         <h3><i class="fas fa-map-marker-alt"></i> Adresse :</h3>
-                        <p>3 rue alphonse Terray</p>
+                        <p><c:out value="${commandPayed.address}"/></p>
                     </div>
                 </div>
                 <div>
