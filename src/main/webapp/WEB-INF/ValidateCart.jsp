@@ -9,7 +9,7 @@
 <body>
 <div class="content">
     <c:if test="${sessionScope.commandChartreuse == null}" >
-        <h1>Votre panier contient 4 articles :</h1>
+        <h1>Votre panier contient <c:out value="${ sessionScope.cartChartreuse.size() }" /> articles :</h1>
         <div class="cart">
             <article class="cart-products">
                 <c:forEach var="product" items="${ sessionScope.cartChartreuse }">
@@ -23,7 +23,7 @@
                                     <h3><c:out value="${ product.name }" /></h3>
                                     <p>${ product.quantity }L</p>
                                 </div>
-                                <p>${ product.price }0€</p>
+                                <p>${ product.price }€</p>
                             </div>
                         </div>
                     </section>
