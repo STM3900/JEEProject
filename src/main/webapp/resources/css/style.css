@@ -546,6 +546,64 @@ header h1 {
     margin-bottom: 10px;
 }
 
+/* Pour la page Commands */
+
+.commands-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    width: 75%;
+}
+
+.commands-list section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.commands-list-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+}
+
+.commands-list-group div {
+    width: 50%;
+}
+
+.commands-list-group div p {
+    font-size: 20px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.button-group button {
+    margin-left: 10px;
+}
+
+.button-group form input {
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 1100px) {
     .product-list section {
         width: 45%;
