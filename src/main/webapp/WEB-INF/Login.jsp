@@ -42,6 +42,9 @@
                     value="Connexion"
                 />
             </form>
+            <c:if test="${error != null}">
+                <p class="error">Mauvais identifiant ou mot de passe</p>
+            </c:if>
         </article>
         <article class="auth-register">
             <h1>Inscription</h1>
