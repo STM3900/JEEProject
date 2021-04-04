@@ -22,10 +22,12 @@
                         <h3><i class="fas fa-euro-sign"></i> Montant :</h3>
                         <p>${command.totalPrice}€</p>
                     </div>
-                    <div>
-                        <h3><i class="fas fa-euro-sign"></i> Mode de paiement :</h3>
-                        <p>${command.paymentMethod}</p>
-                    </div>
+                    <c:if test="${command.paymentMethod != null }">
+                        <div>
+                            <h3><i class="fas fa-euro-sign"></i> Mode de paiement :</h3>
+                            <p>${command.paymentMethod}</p>
+                        </div>
+                    </c:if>
                     <div>
                         <h3><i class="fas fa-truck"></i> Mode de livraison :</h3>
                         <p>${command.deliveryMethod}</p>
