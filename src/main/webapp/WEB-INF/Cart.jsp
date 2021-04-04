@@ -23,7 +23,7 @@
                                 <h3><c:out value="${ product.name }" /></h3>
                                 <p>${ product.quantity }L</p>
                             </div>
-                            <p>${ product.price }0€</p>
+                            <p>${ product.price }€</p>
                         </div>
                         <form method="post" action="Cart">
                             <input type="hidden" id="idToDelete" name="idToDelete" value="${ product.idProduct }"/>
