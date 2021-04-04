@@ -40,7 +40,10 @@
   + [x] liste commandes
     + [x] mode paiment
     + [x] mode livraison
+    + [x] adresse
     + [x] price
+  + [x] delete command
+  + [x] pay now
 
 ## Global features
 + [x] tagdir : remove the jsp first line
@@ -50,15 +53,9 @@
   + go to **dependencies** in **modules**
   + **+** then choose **library** then **From Maven**
   + Just search your dependency, download it, add it and **Apply**
-  
-
 
 ## Core
 + [x] beans 
 + [x] dao
-+ [x] model : commands ?
++ [x] model
 + [x] controllers
-
-# TODO
-+ [x] add model for commands and in database too
-+ [x] add SQL request : commands of user
