@@ -22,25 +22,25 @@
   + [x] Login
   + [x] Sign up
   + [x] Logout
-+ [ ] Panier :
++ [x] Panier :
   + [x] list of products small detail (name, quantity, price)
   + [x] delete product button
   + [x] Price total
   + [x] button validate panier
 + [x] Add Product :
   + [x] Form new product
-+ [ ] Validate panier :
-  + [ ] recap
-  + [ ] options (livraison, facture?)
-  + [ ] button pay
-+ [ ] Pay now :
-  + [ ] Form info paiement
-  + [ ] button pay
-+ [ ] Commandes :
-  + [ ] liste commandes
-    + [ ] mode paiment
-    + [ ] mode livraison
-    + [ ] price
++ [x] Validate panier :
+  + [x] recap
+  + [x] options (livraison, facture?)
+  + [x] button pay
++ [x] Pay now :
+  + [x] Form info paiement
+  + [x] button pay
++ [x] Commandes :
+  + [x] liste commandes
+    + [x] mode paiment
+    + [x] mode livraison
+    + [x] price
 
 ## Global features
 + [x] tagdir : remove the jsp first line
@@ -56,9 +56,9 @@
 ## Core
 + [x] beans 
 + [x] dao
-+ [ ] model : commands ?
++ [x] model : commands ?
 + [x] controllers
 
 # TODO
-+ [ ] add model for commands and in database too
-+ [ ] add SQL request : commands of user
++ [x] add model for commands and in database too
++ [x] add SQL request : commands of user
